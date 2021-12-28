@@ -432,5 +432,10 @@ namespace Recreation_Center
             }
             return false;
         }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
