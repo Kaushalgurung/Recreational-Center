@@ -58,6 +58,7 @@ namespace Recreation_Center
         private void timer1_Tick(object sender, EventArgs e)
         {
             currenttimelbl.Text = DateTime.Now.ToLongTimeString();
+            this.checkin.Text = DateTime.Now.ToString("hh:mm");
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -91,10 +92,11 @@ namespace Recreation_Center
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
+            if (groupcheck.Checked)
             {
                 grouptxt.Show();
                 label22.Show();
+
             }
             else
             {
@@ -102,5 +104,6 @@ namespace Recreation_Center
                 label22.Hide();
             }
         }
+
     }
 }
