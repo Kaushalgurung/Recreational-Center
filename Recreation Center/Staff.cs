@@ -15,8 +15,6 @@ namespace Recreation_Center
         public Staff()
         {
             InitializeComponent();
-            grouptxt.Hide();
-            label22.Hide();
         }
 
 
@@ -100,16 +98,15 @@ namespace Recreation_Center
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (groupcheck.Checked)
+            if (indivisualcheck.Checked)
             {
-                grouptxt.Show();
-                label22.Show();
-
+                this.grouptxt.Text = "0";
+                grouptxt.ReadOnly = true;
             }
             else
             {
-                grouptxt.Hide();
-                label22.Hide();
+                this.grouptxt.Text = "";
+                grouptxt.ReadOnly = false;
             }
         }
     }
