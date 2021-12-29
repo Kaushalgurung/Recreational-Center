@@ -68,7 +68,7 @@ namespace Recreation_Center
                 Login lf = new Login();
                 lf.Show();
             }
-        }
+        }  
 
         private void getprice_Click(object sender, EventArgs e)
         {
@@ -82,12 +82,20 @@ namespace Recreation_Center
                 MessageBox.Show("Coudn't get price information !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void InsertValuesToTable()                          // Enters data to Table
+        private void InsertValuesToTable()                          // Enters  price data to Table
         {
             Price p = new Price();
             List<Price> Pricelist = p.List();
             DataTable dataTable = Tools.ToTable(Pricelist);
-            pricedataGridView.DataSource = dataTable;                 // Source is given as datatable which contains all the price rate
+            pricedataGridView.DataSource = dataTable;                                       // Source is given as datatable which contains all the price rate
+        }
+
+        private void InsertVisitorsValueToTable()
+        {
+            Visitors v = new Visitors();
+            List<Visitors> listVisitors = v.List();
+            DataTable dataTable = Tools.ToTable(listVisitors);
+            VisitordataGridView.DataSource = dataTable;
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
