@@ -112,6 +112,5 @@ namespace Recreation_Center
                 label22.Hide();
             }
         }
-
     }
 }

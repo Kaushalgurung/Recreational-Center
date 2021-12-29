@@ -32,6 +32,8 @@ namespace Recreation_Center
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.checkin = new System.Windows.Forms.TextBox();
             this.groupcheck = new System.Windows.Forms.CheckBox();
             this.currenttimelbl = new System.Windows.Forms.Label();
@@ -101,8 +103,12 @@ namespace Recreation_Center
             this.visitorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.priceBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.priceBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.sortbtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitordataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -128,6 +134,7 @@ namespace Recreation_Center
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Silver;
+            this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Controls.Add(this.checkin);
             this.tabPage1.Controls.Add(this.groupcheck);
             this.tabPage1.Controls.Add(this.currenttimelbl);
@@ -161,6 +168,31 @@ namespace Recreation_Center
             this.tabPage1.Size = new System.Drawing.Size(1379, 400);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Visitor Details";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.sortbtn);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.radioButton2);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(609, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(441, 46);
+            this.groupBox1.TabIndex = 32;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Sort Data";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(60, 21);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(55, 19);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Date";
+            this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // checkin
             // 
@@ -303,9 +335,9 @@ namespace Recreation_Center
             this.VisitordataGridView.DataSource = this.visitorsBindingSource1;
             this.VisitordataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.VisitordataGridView.GridColor = System.Drawing.SystemColors.Control;
-            this.VisitordataGridView.Location = new System.Drawing.Point(313, 40);
+            this.VisitordataGridView.Location = new System.Drawing.Point(313, 77);
             this.VisitordataGridView.Name = "VisitordataGridView";
-            this.VisitordataGridView.Size = new System.Drawing.Size(1044, 357);
+            this.VisitordataGridView.Size = new System.Drawing.Size(1044, 320);
             this.VisitordataGridView.TabIndex = 17;
             // 
             // visitorIDDataGridViewTextBoxColumn
@@ -731,6 +763,37 @@ namespace Recreation_Center
             // 
             this.priceBindingSource2.DataSource = typeof(Recreation_Center.Price);
             // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(137, 21);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(63, 19);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Name";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Ascending",
+            "Decending"});
+            this.comboBox1.Location = new System.Drawing.Point(206, 17);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 23);
+            this.comboBox1.TabIndex = 2;
+            // 
+            // sortbtn
+            // 
+            this.sortbtn.Location = new System.Drawing.Point(346, 16);
+            this.sortbtn.Name = "sortbtn";
+            this.sortbtn.Size = new System.Drawing.Size(75, 23);
+            this.sortbtn.TabIndex = 3;
+            this.sortbtn.Text = "Sort";
+            this.sortbtn.UseVisualStyleBackColor = true;
+            // 
             // Staff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -746,6 +809,8 @@ namespace Recreation_Center
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitordataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).EndInit();
             this.tabPage2.ResumeLayout(false);
@@ -832,6 +897,11 @@ namespace Recreation_Center
         private System.Windows.Forms.CheckBox groupcheck;
         private System.Windows.Forms.MaskedTextBox entertxt;
         private System.Windows.Forms.TextBox checkin;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button sortbtn;
     }
 }
 
