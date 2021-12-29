@@ -368,6 +368,7 @@ namespace Recreation_Center
             this.pricedataGridView.DataSource = this.priceBindingSource5;
             this.pricedataGridView.Location = new System.Drawing.Point(-6, 19);
             this.pricedataGridView.Name = "pricedataGridView";
+            this.pricedataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.pricedataGridView.Size = new System.Drawing.Size(1366, 297);
             this.pricedataGridView.TabIndex = 34;
             // 
