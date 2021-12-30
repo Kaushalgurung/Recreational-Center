@@ -244,7 +244,7 @@ namespace Recreation_Center
                         string[] visitorNameArray = new string[noOfVisitors];
                         for (int i = 0; i < noOfVisitors; i++)
                         {
-                            visitorNameArray[i] = visitorsList[i].Name.Split(' ')[0];
+                            visitorNameArray[i] = visitorsList[i].Name;
                         }
                         for (int i = 0; i < noOfVisitors; i++)
                         {
@@ -266,7 +266,7 @@ namespace Recreation_Center
                         {
                             for (int j = 0; j < noOfVisitors; j++)
                             {
-                                if (visitorNameArray[i] == visitorsList[j].Name.Split(' ')[0])
+                                if (visitorNameArray[i] == visitorsList[j].Name)
                                 {
                                     newSortedList.Add(visitorsList[j]);
                                 }
@@ -311,6 +311,29 @@ namespace Recreation_Center
                     VisitordataGridView.DataSource = dataTable;
                 }
             }
+        }
+
+        private void backbtn_Click(object sender, EventArgs e)
+        {
+            label7.Visible = false;
+            checkout.Visible = false;
+            checkoutbtn.Visible = false;
+            clear();
+            IDtxt.ReadOnly = false;
+            Nametxt.ReadOnly = false;
+            Phonetxt.ReadOnly = false;
+            agetxt.ReadOnly = false;
+            grouptxt.ReadOnly = false;
+            checkin.ReadOnly = false;
+            indivisualcheck.Visible = true;
+            Checkinbtn.Visible = true;
+            clearbtn.Visible = true;
+            checkoutbtn.Visible = false;
+            label6.Visible = false;
+            checkin.Visible = false;
+            checkout.Visible = false;
+            label7.Visible = false;
+
         }
     }
 }

@@ -637,6 +637,7 @@ namespace Recreation_Center
             this.backbtn.TabIndex = 39;
             this.backbtn.Text = "Back to check-in";
             this.backbtn.UseVisualStyleBackColor = false;
+            this.backbtn.Click += new System.EventHandler(this.backbtn_Click);
             // 
             // visitorIDDataGridViewTextBoxColumn
             // 
