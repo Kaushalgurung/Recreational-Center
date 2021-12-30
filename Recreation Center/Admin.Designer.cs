@@ -324,7 +324,6 @@ namespace Recreation_Center
             this.tabPage2.Size = new System.Drawing.Size(1380, 536);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Pricing Details";
-            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // pricelist
             // 
