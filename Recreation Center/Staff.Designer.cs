@@ -65,7 +65,7 @@ namespace Recreation_Center
             this.exitTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.visitorsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.visitorsBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.Nametxt = new System.Windows.Forms.TextBox();
             this.datetxt = new System.Windows.Forms.DateTimePicker();
             this.IDtxt = new System.Windows.Forms.TextBox();
@@ -103,25 +103,25 @@ namespace Recreation_Center
             this.priceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.visitorsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.visitorsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.visitorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.priceBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.priceBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.visitorsBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitordataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource3)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pricedataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource3)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -292,7 +292,6 @@ namespace Recreation_Center
             this.checkin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkin.Location = new System.Drawing.Point(103, 205);
             this.checkin.Name = "checkin";
-            this.checkin.ReadOnly = true;
             this.checkin.Size = new System.Drawing.Size(63, 22);
             this.checkin.TabIndex = 31;
             // 
@@ -439,8 +438,7 @@ namespace Recreation_Center
             this.VisitordataGridView.ShowEditingIcon = false;
             this.VisitordataGridView.Size = new System.Drawing.Size(944, 320);
             this.VisitordataGridView.TabIndex = 17;
-            this.VisitordataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.VisitordataGridView_CellContentClick);
-
+            this.VisitordataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.VisitordataGridView_CellClick);
             // 
             // visitorIDDataGridViewTextBoxColumn
             // 
@@ -505,9 +503,9 @@ namespace Recreation_Center
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             this.priceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // visitorsBindingSource2
+            // visitorsBindingSource3
             // 
-            this.visitorsBindingSource2.DataSource = typeof(Recreation_Center.Visitors);
+            this.visitorsBindingSource3.DataSource = typeof(Recreation_Center.Visitors);
             // 
             // Nametxt
             // 
@@ -669,7 +667,6 @@ namespace Recreation_Center
             this.pricedataGridView.Name = "pricedataGridView";
             this.pricedataGridView.Size = new System.Drawing.Size(1367, 315);
             this.pricedataGridView.TabIndex = 34;
-
             // 
             // child1to2hrDataGridViewTextBoxColumn
             // 
@@ -813,6 +810,10 @@ namespace Recreation_Center
             this.tabPage4.Text = "Weekly Reports";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
+            // visitorsBindingSource2
+            // 
+            this.visitorsBindingSource2.DataSource = typeof(Recreation_Center.Visitors);
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
@@ -834,10 +835,6 @@ namespace Recreation_Center
             // 
             this.priceBindingSource2.DataSource = typeof(Recreation_Center.Price);
             // 
-            // visitorsBindingSource3
-            // 
-            this.visitorsBindingSource3.DataSource = typeof(Recreation_Center.Visitors);
-            // 
             // Staff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -856,16 +853,16 @@ namespace Recreation_Center
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitordataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource3)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pricedataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource3)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -19,6 +19,7 @@ namespace Recreation_Center
             InitializeComponent();
             label7.Visible = false;
             checkout.Visible = false;
+            checkoutbtn.Visible = false;
         }
 
 
@@ -60,7 +61,6 @@ namespace Recreation_Center
         private void timer1_Tick(object sender, EventArgs e)
         {
             currenttimelbl.Text = DateTime.Now.ToLongTimeString();
-            this.checkin.Text = DateTime.Now.ToString("hh:mm");
             this.checkout.Text = DateTime.Now.ToString("hh:mm"); 
         }
         protected override void OnClosed(EventArgs e)
@@ -121,20 +121,25 @@ namespace Recreation_Center
             string phone = Phonetxt.Text;
             string age = agetxt.Text;
             string group = grouptxt.Text;
+            string entry = checkin.Text;
             if (String.IsNullOrEmpty(Nametxt.Text))
             {
                 Nametxt.BackColor = System.Drawing.Color.LightPink;
-                MessageBox.Show("Price field empty!", "Empty data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Empty data field!", "Empty data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (String.IsNullOrEmpty(Phonetxt.Text))
             {
                 Phonetxt.BackColor = System.Drawing.Color.LightPink;
-                MessageBox.Show("Price field empty!", "Empty data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Empty data field!", "Empty data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else if (String.IsNullOrEmpty(agetxt.Text))
             {
                 agetxt.BackColor = System.Drawing.Color.LightPink;
-                MessageBox.Show("Price field empty!", "Empty data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Empty data field!", "Empty data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else if (String.IsNullOrEmpty(grouptxt.Text))
+            {
+                MessageBox.Show("Check indivisual checkbox or enter group no.", "Empty data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else {
                 Nametxt.BackColor = System.Drawing.Color.White;
@@ -147,7 +152,7 @@ namespace Recreation_Center
                     v.Phone = phone;
                     v.Age = age;
                     v.Date = datetxt.Value.Date;
-                    v.EntryTime = checkin.Text;
+                    v.EntryTime = entry;
                     v.Groupno = group;
                     v.Add(v);
                     InsertVisitorsValueToTable();
@@ -162,6 +167,35 @@ namespace Recreation_Center
             InsertVisitorsValueToTable();
         }
 
+        private void VisitordataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (VisitordataGridView.SelectedRows.Count > 0)
+            {
+                visitorID = Int32.Parse(VisitordataGridView.CurrentRow.Cells[0].Value.ToString());
+                IDtxt.Text = visitorID.ToString();
+                Nametxt.Text = VisitordataGridView.CurrentRow.Cells[1].Value.ToString();
+                Phonetxt.Text = VisitordataGridView.CurrentRow.Cells[2].Value.ToString();
+                agetxt.Text = VisitordataGridView.CurrentRow.Cells[3].Value.ToString();
+                checkin.Text = VisitordataGridView.CurrentRow.Cells[5].Value.ToString();
+                grouptxt.Text = VisitordataGridView.CurrentRow.Cells[7].Value.ToString();
+
+                IDtxt.ReadOnly = true;
+                Nametxt.ReadOnly = true;
+                Phonetxt.ReadOnly = true;
+                agetxt.ReadOnly = true;
+                grouptxt.ReadOnly = true;
+                checkin.ReadOnly = true;
+                indivisualcheck.Visible = false;
+                Checkinbtn.Visible = false;
+                clearbtn.Visible = false;
+                checkoutbtn.Visible = true;
+                label6.Visible = true;
+                checkin.Visible = true;
+                checkout.Visible = true;
+                label7.Visible = true;
+
+            }
+        }
         private void checkoutbtn_Click(object sender, EventArgs e)
         {
             if (IDtxt.Text != "")
@@ -172,29 +206,16 @@ namespace Recreation_Center
                 Nametxt.Text = v.Name;
                 Phonetxt.Text = v.Phone;
                 agetxt.Text = v.Age;
-                datetxt.Value = v.Date;
                 checkout.Text = v.ExitTime;
                 grouptxt.Text = v.Groupno;
-                checkin.Text = v.EntryTime;
-                // xxxxxxxxxxxxxxxx=======Complete it=== incomplete code//
-
+                v.Edit(v);
+                InsertVisitorsValueToTable();
+                MessageBox.Show("Visitor Checked-Out");
+                clear();
             }
-        }
-
-        private void VisitordataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (VisitordataGridView.SelectedRows.Count > 0)
+            else
             {
-                Visitors v = new Visitors();
-                Visitors vs = v.List().Where(visitorcheckout => visitorcheckout.VisitorID == visitorID).FirstOrDefault();
-                visitorID = Int32.Parse(VisitordataGridView.CurrentRow.Cells[0].Value.ToString());
-                IDtxt.Text = visitorID.ToString();
-                Nametxt.Text = v.Name;
-                Phonetxt.Text = v.Phone;
-                agetxt.Text = v.Age;
-                checkout.Text = v.ExitTime;
-                grouptxt.Text = v.Groupno;
-                checkin.Text = v.EntryTime;
+                MessageBox.Show("Select a Visitor from the Visitor's table to checkout!", "No data to check-out!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

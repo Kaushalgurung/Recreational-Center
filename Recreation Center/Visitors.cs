@@ -39,6 +39,15 @@ namespace Recreation_Center
             }
             return null;
         }
+        public void Edit(Visitors visitorsDetails)
+        {
+            List<Visitors> visitorsList = List();
+            Visitors visitor = visitorsList.Where(editingVisitor => editingVisitor.VisitorID == visitorsDetails.VisitorID).FirstOrDefault();
+            visitorsList.Remove(visitor);
+            visitorsList.Add(visitorsDetails);
+            string visitorInfo = JsonConvert.SerializeObject(visitorsList, Formatting.None);
+            Tools.WriteToTextFile(filePath, visitorInfo, false);
+        }
 
     }
 }
