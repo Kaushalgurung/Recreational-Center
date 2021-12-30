@@ -15,8 +15,8 @@ namespace Recreation_Center
         public string Phone { get; set; }
         public string Age { get; set; }
         public DateTime Date { get; set; }
-        public string EntryTime { get; set; }
-        public string ExitTime { get; set; }
+        public DateTime EntryTime { get; set; }
+        public DateTime ExitTime { get; set; }
         public string Groupno { get; set; }
         public string Price { get; set; }
 

@@ -20,6 +20,11 @@ namespace Recreation_Center
             label7.Visible = false;
             checkout.Visible = false;
             checkoutbtn.Visible = false;
+            checkin = new DateTimePicker();
+            checkin.Format = DateTimePickerFormat.Custom;
+            checkin.CustomFormat = "HH:mm"; // Only use hours and minutes
+            checkin.ShowUpDown = true;
+
         }
 
 
@@ -121,7 +126,6 @@ namespace Recreation_Center
             string phone = Phonetxt.Text;
             string age = agetxt.Text;
             string group = grouptxt.Text;
-            string entry = checkin.Text;
             if (String.IsNullOrEmpty(Nametxt.Text))
             {
                 Nametxt.BackColor = System.Drawing.Color.LightPink;
@@ -153,7 +157,8 @@ namespace Recreation_Center
                     v.Phone = phone;
                     v.Age = age;
                     v.Date = datetxt.Value.Date;
-                    v.EntryTime = entry;
+                    checkin.Format = DateTimePickerFormat.Time;
+                    v.EntryTime = checkin.Value;
                     v.Groupno = group;
                     v.Add(v);
                     InsertVisitorsValueToTable();
@@ -185,7 +190,7 @@ namespace Recreation_Center
                 Phonetxt.ReadOnly = true;
                 agetxt.ReadOnly = true;
                 grouptxt.ReadOnly = true;
-                checkin.ReadOnly = true;
+                checkin.ShowUpDown = true;
                 indivisualcheck.Visible = false;
                 Checkinbtn.Visible = false;
                 clearbtn.Visible = false;
@@ -207,7 +212,7 @@ namespace Recreation_Center
                 Nametxt.Text = v.Name;
                 Phonetxt.Text = v.Phone;
                 agetxt.Text = v.Age;
-                checkout.Text = v.ExitTime;
+                checkout.Text = v.ExitTime.ToString();
                 grouptxt.Text = v.Groupno;
                 v.Edit(v);
                 InsertVisitorsValueToTable();
@@ -244,7 +249,7 @@ namespace Recreation_Center
                         string[] visitorNameArray = new string[noOfVisitors];
                         for (int i = 0; i < noOfVisitors; i++)
                         {
-                            visitorNameArray[i] = visitorsList[i].Name;
+                            visitorNameArray[i] = visitorsList[i].Name.Split(' ')[0];
                         }
                         for (int i = 0; i < noOfVisitors; i++)
                         {
@@ -266,8 +271,9 @@ namespace Recreation_Center
                         {
                             for (int j = 0; j < noOfVisitors; j++)
                             {
-                                if (visitorNameArray[i] == visitorsList[j].Name)
+                                if (visitorNameArray[i] == visitorsList[j].Name.Split(' ')[0])
                                 {
+                                    visitorsList.Remove(visitor);
                                     newSortedList.Add(visitorsList[j]);
                                 }
                             }
@@ -302,6 +308,7 @@ namespace Recreation_Center
                             {
                                 if (dateTimeArray[i] == visitorsList[j].Date)
                                 {
+                                    visitorsList.Remove(visitor);
                                     newSortedList.Add(visitorsList[j]);
                                 }
                             }
@@ -324,7 +331,6 @@ namespace Recreation_Center
             Phonetxt.ReadOnly = false;
             agetxt.ReadOnly = false;
             grouptxt.ReadOnly = false;
-            checkin.ReadOnly = false;
             indivisualcheck.Visible = true;
             Checkinbtn.Visible = true;
             clearbtn.Visible = true;
@@ -335,5 +341,6 @@ namespace Recreation_Center
             label7.Visible = false;
 
         }
+
     }
 }
