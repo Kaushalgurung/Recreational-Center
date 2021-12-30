@@ -20,10 +20,7 @@ namespace Recreation_Center
             label7.Visible = false;
             checkout.Visible = false;
             checkoutbtn.Visible = false;
-            checkin = new DateTimePicker();
-            checkin.Format = DateTimePickerFormat.Custom;
-            checkin.CustomFormat = "HH:mm"; // Only use hours and minutes
-            checkin.ShowUpDown = true;
+            weekendtxt.Visible = false;
 
         }
 
@@ -119,6 +116,19 @@ namespace Recreation_Center
                 grouptxt.ReadOnly = false;
             }
         }
+        private void isWeekend_CheckedChanged(object sender, EventArgs e)
+        {
+            if (isWeekend.Checked)
+            {
+                this.weekendtxt.Text = "Weekend";
+                weekendtxt.ReadOnly = true;
+            }
+            else
+            {
+                this.weekendtxt.Text = "Weekday";
+            }
+
+        }
 
         private void Checkinbtn_Click(object sender, EventArgs e)
         {
@@ -126,6 +136,9 @@ namespace Recreation_Center
             string phone = Phonetxt.Text;
             string age = agetxt.Text;
             string group = grouptxt.Text;
+            DateTime dt = checkin.Value;
+            string weekend = weekendtxt.Text;
+            string entry = dt.ToLongTimeString();
             if (String.IsNullOrEmpty(Nametxt.Text))
             {
                 Nametxt.BackColor = System.Drawing.Color.LightPink;
@@ -157,9 +170,9 @@ namespace Recreation_Center
                     v.Phone = phone;
                     v.Age = age;
                     v.Date = datetxt.Value.Date;
-                    checkin.Format = DateTimePickerFormat.Time;
-                    v.EntryTime = checkin.Value;
+                    v.EntryTime = entry;
                     v.Groupno = group;
+                    v.Day = weekend;
                     v.Add(v);
                     InsertVisitorsValueToTable();
                     MessageBox.Show("Visitor Checked-In");
@@ -182,8 +195,8 @@ namespace Recreation_Center
                 Nametxt.Text = VisitordataGridView.CurrentRow.Cells[1].Value.ToString();
                 Phonetxt.Text = VisitordataGridView.CurrentRow.Cells[2].Value.ToString();
                 agetxt.Text = VisitordataGridView.CurrentRow.Cells[3].Value.ToString();
-                checkin.Text = VisitordataGridView.CurrentRow.Cells[5].Value.ToString();
-                grouptxt.Text = VisitordataGridView.CurrentRow.Cells[7].Value.ToString();
+                checkin.Text = VisitordataGridView.CurrentRow.Cells[6].Value.ToString();
+                grouptxt.Text = VisitordataGridView.CurrentRow.Cells[8].Value.ToString();
 
                 IDtxt.ReadOnly = true;
                 Nametxt.ReadOnly = true;
@@ -206,14 +219,18 @@ namespace Recreation_Center
         {
             if (IDtxt.Text != "")
             {
+                DateTime dt = checkout.Value;
+                string exit = dt.ToLongTimeString();
+
                 Visitors v = new Visitors();
                 Visitors vs = v.List().Where(visitorcheckout => visitorcheckout.VisitorID == visitorID).FirstOrDefault();
                 IDtxt.Text = v.VisitorID.ToString();
                 Nametxt.Text = v.Name;
                 Phonetxt.Text = v.Phone;
                 agetxt.Text = v.Age;
-                checkout.Text = v.ExitTime.ToString();
                 grouptxt.Text = v.Groupno;
+                checkin.Text = v.EntryTime;
+                checkout.Text = v.ExitTime;
                 v.Edit(v);
                 InsertVisitorsValueToTable();
                 MessageBox.Show("Visitor Checked-Out");
@@ -335,12 +352,13 @@ namespace Recreation_Center
             Checkinbtn.Visible = true;
             clearbtn.Visible = true;
             checkoutbtn.Visible = false;
-            label6.Visible = false;
-            checkin.Visible = false;
+            label6.Visible = true;
+            checkin.Visible = true;
             checkout.Visible = false;
             label7.Visible = false;
 
         }
+
 
     }
 }
