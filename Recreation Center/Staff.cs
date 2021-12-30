@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace Recreation_Center
 {
     public partial class Staff : Form
-        
+
     {
         int visitorID;
         public Staff()
@@ -61,7 +61,7 @@ namespace Recreation_Center
         private void timer1_Tick(object sender, EventArgs e)
         {
             currenttimelbl.Text = DateTime.Now.ToLongTimeString();
-            this.checkout.Text = DateTime.Now.ToString("hh:mm"); 
+            this.checkout.Text = DateTime.Now.ToString("hh:mm");
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -141,7 +141,8 @@ namespace Recreation_Center
             {
                 MessageBox.Show("Check indivisual checkbox or enter group no.", "Empty data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else {
+            else
+            {
                 Nametxt.BackColor = System.Drawing.Color.White;
                 Phonetxt.BackColor = System.Drawing.Color.White;
                 agetxt.BackColor = System.Drawing.Color.White;
@@ -216,6 +217,99 @@ namespace Recreation_Center
             else
             {
                 MessageBox.Show("Select a Visitor from the Visitor's table to checkout!", "No data to check-out!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void sortbtn_Click(object sender, EventArgs e)
+        {
+            string sortOrder = SortcomboBox.Text;
+            if (sortOrder == "")
+            {
+                MessageBox.Show("Select sorting order ", "Missing sort order!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                if (!radioButtonName.Checked && !radioButtonDate.Checked)
+                {
+                    MessageBox.Show("Choose either of the option you want to sort.", "Choose Sorting of data.", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    Visitors visitor = new Visitors();
+                    List<Visitors> newSortedList = new List<Visitors>();
+                    List<Visitors> visitorsList = visitor.List();
+                    int noOfVisitors = visitorsList.Count;
+                    if (radioButtonName.Checked)
+                    {
+                        string[] visitorNameArray = new string[noOfVisitors];
+                        for (int i = 0; i < noOfVisitors; i++)
+                        {
+                            visitorNameArray[i] = visitorsList[i].Name.Split(' ')[0];
+                        }
+                        for (int i = 0; i < noOfVisitors; i++)
+                        {
+                            for (int j = 0; j < noOfVisitors - 1; j++)
+                            {
+                                if (visitorNameArray[j].CompareTo(visitorNameArray[j + 1]) > 0)
+                                {
+                                    string temp = visitorNameArray[j];
+                                    visitorNameArray[j] = visitorNameArray[j + 1];
+                                    visitorNameArray[j + 1] = temp;
+                                }
+                            }
+                        }
+                        if (sortOrder.Equals("Decending"))
+                        {
+                            Array.Reverse(visitorNameArray);
+                        }
+                        for (int i = 0; 1 < noOfVisitors; i++)
+                        {
+                            for (int j = 0; j < noOfVisitors; j++)
+                            {
+                                if (visitorNameArray[i] == visitorsList[j].Name.Split(' ')[0])
+                                {
+                                    newSortedList.Add(visitorsList[j]);
+                                }
+                            }
+                        }
+                    }
+                    else if (radioButtonDate.Checked)
+                    {
+                        DateTime[] dateTimeArray = new DateTime[noOfVisitors];
+                        for (int i = 0; i < noOfVisitors; i++)
+                        {
+                            dateTimeArray[i] = visitorsList[i].Date;
+                        }
+                        for (int i = 0; i < noOfVisitors; i++)
+                        {
+                            for (int j = 0; j < noOfVisitors - 1; j++)
+                            {
+                                if (dateTimeArray[j].CompareTo(dateTimeArray[j + 1]) > 0)
+                                {
+                                    DateTime temp = dateTimeArray[j];
+                                    dateTimeArray[j] = dateTimeArray[j + 1];
+                                    dateTimeArray[j + 1] = temp;
+                                }
+                            }
+                        }
+                        if (sortOrder.Equals("Descending"))
+                        {
+                            Array.Reverse(dateTimeArray);
+                        }
+                        for (int i = 0; i < noOfVisitors; i++)
+                        {
+                            for (int j = 0; j < noOfVisitors; j++)
+                            {
+                                if (dateTimeArray[i] == visitorsList[j].Date)
+                                {
+                                    newSortedList.Add(visitorsList[j]);
+                                }
+                            }
+                        }
+                    }
+                    DataTable dataTable = Tools.ToTable(newSortedList);
+                    VisitordataGridView.DataSource = dataTable;
+                }
             }
         }
     }
