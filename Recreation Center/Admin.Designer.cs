@@ -636,7 +636,7 @@ namespace Recreation_Center
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(45, 16);
             this.label19.TabIndex = 23;
-            this.label19.Text = "1 to 5";
+            this.label19.Text = "2 to 5";
             // 
             // label20
             // 

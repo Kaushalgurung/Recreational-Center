@@ -10,17 +10,20 @@ using System.IO;
 using CsvHelper;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
-
+using Newtonsoft.Json;
 
 namespace Recreation_Center
 {
     public partial class Admin : Form
     {
+        private string filePath = "PriceInformation.json";
+
         public Admin()
         {
             InitializeComponent();
+            p = new Price();
         }
-
+        Price p;
         private void button5_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Do you want to logout?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -129,35 +132,33 @@ namespace Recreation_Center
             {
                 if (MessageBox.Show("Are you sure??", "Really?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)       // If User Confirms then Execute Below
                 {
-                    Price newPrice = new Price();
-                    newPrice.child1to2hr = price1;
-                    newPrice.child2to4hr = price2;
-                    newPrice.child4to6hrs = price3;
-                    newPrice.childwholeday = price4;
+                    p.child1to2hr = price1;
+                    p.child2to4hr = price2;
+                    p.child4to6hrs = price3;
+                    p.childwholeday = price4;
 
-                    newPrice.youth1to2hrs = price5;
-                    newPrice.youth2to4hrs = price6;
-                    newPrice.youth4to6hrs = price7;
-                    newPrice.youthwholeday = price8;
+                    p.youth1to2hrs = price5;
+                    p.youth2to4hrs = price6;
+                    p.youth4to6hrs = price7;
+                    p.youthwholeday = price8;
 
-                    newPrice.adult1to2hrs = price9;
-                    newPrice.adult2to4hrs = price10;
-                    newPrice.adult4to6hrs = price11;
-                    newPrice.adultwholeday = price12;
+                    p.adult1to2hrs = price9;
+                    p.adult2to4hrs = price10;
+                    p.adult4to6hrs = price11;
+                    p.adultwholeday = price12;
 
-                    newPrice.senior1to2hrs = price13;
-                    newPrice.senior2to4hrs = price14;
-                    newPrice.senior4to6hrs = price15;
-                    newPrice.seniorwholeday = price16;
+                    p.senior1to2hrs = price13;
+                    p.senior2to4hrs = price14;
+                    p.senior4to6hrs = price15;
+                    p.seniorwholeday = price16;
 
-                    newPrice.group1to5 = price17;
-                    newPrice.group5to10 = price18;
-                    newPrice.groupover10 = price19;
+                    p.group2to5 = price17;
+                    p.group5to10 = price18;
+                    p.groupover10 = price19;
 
-                    newPrice.weekdays = price20;
-                    newPrice.weekend = price21;
+                    p.weekdays = price20;
+                    p.weekend = price21;
 
-                    newPrice.Add(newPrice);
                     InsertValuesToTable();
                     MessageBox.Show("Price Information Added");
                     clear();                         // To Clear after Submitting
@@ -166,8 +167,8 @@ namespace Recreation_Center
         }
         private void InsertValuesToTable()                          // Enters data to Table
         {
-            Price p = new Price();
-            List<Price> Pricelist = p.List();
+            List<Price> Pricelist = new List<Price>();
+            Pricelist.Add(p);
             DataTable dataTable = Tools.ToTable(Pricelist);
             pricedataGridView.DataSource = dataTable;                 // Source is given as datatable which contains all the inforamtion of the price
         }
@@ -185,8 +186,16 @@ namespace Recreation_Center
         {
             if (MessageBox.Show("Are you sure you want to export pre-saved data??", "Really?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)       // If User Confirms then Execute Below
             {
+                
+                string file = Tools.ReadFromTextFile(filePath);
+                if (file != null)
+                {
+                    List<Price> pl  = JsonConvert.DeserializeObject<List<Price>>(file);
+                    p = pl[0];
+                }
+               
                 InsertValuesToTable();
-                MessageBox.Show("Price Data Exported.");
+                MessageBox.Show("Price Data Imported.");
             }
         }
         private Boolean Validate(string price1, string price2, string price3, string price4, string price5, string price6, string price7, string price8,string price9,string price10, string price11, string price12, string price13, string price14, string price15, string price16, string price17, string price18,string price19, string price20, string price21)

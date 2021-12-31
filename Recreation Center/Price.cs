@@ -25,12 +25,12 @@ namespace Recreation_Center
         public string senior2to4hrs { get; set; }
         public string senior4to6hrs { get; set; }
         public string seniorwholeday { get; set; }
-        public string group1to5 { get; set; }
+        public string group2to5 { get; set; }
         public string group5to10 { get; set; }
         public string groupover10 { get; set; }
         public string weekdays { get; set; }
         public string weekend { get; set; }
-        
+
         private string filePath = "PriceInformation.json";
 
         public void Add (Price p)
@@ -38,12 +38,12 @@ namespace Recreation_Center
             string data = JsonConvert.SerializeObject(p, Formatting.None);
             Tools.WriteToText(data);
         }
-        public List<Price> List()
+        public Price List()
         {
             string file = Tools.ReadFromTextFile(filePath);
             if (file != null)
             {
-                List<Price> priceList = JsonConvert.DeserializeObject<List<Price>>(file);
+                Price priceList = JsonConvert.DeserializeObject<Price>(file);
                 return priceList;
             }
             return null;

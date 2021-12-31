@@ -32,6 +32,7 @@ namespace Recreation_Center
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.weekendtxt = new System.Windows.Forms.TextBox();
             this.isWeekend = new System.Windows.Forms.CheckBox();
             this.checkout = new System.Windows.Forms.DateTimePicker();
             this.checkin = new System.Windows.Forms.DateTimePicker();
@@ -58,6 +59,17 @@ namespace Recreation_Center
             this.clearbtn = new System.Windows.Forms.Button();
             this.Checkinbtn = new System.Windows.Forms.Button();
             this.VisitordataGridView = new System.Windows.Forms.DataGridView();
+            this.visitorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.entryTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.exitTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.visitorsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.Nametxt = new System.Windows.Forms.TextBox();
             this.datetxt = new System.Windows.Forms.DateTimePicker();
             this.IDtxt = new System.Windows.Forms.TextBox();
@@ -75,27 +87,17 @@ namespace Recreation_Center
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.weekendtxt = new System.Windows.Forms.TextBox();
             this.visitorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.visitorsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.visitorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.entryTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.exitTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.durationtxt = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitordataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pricedataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -113,6 +115,8 @@ namespace Recreation_Center
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Silver;
+            this.tabPage1.Controls.Add(this.label9);
+            this.tabPage1.Controls.Add(this.durationtxt);
             this.tabPage1.Controls.Add(this.weekendtxt);
             this.tabPage1.Controls.Add(this.isWeekend);
             this.tabPage1.Controls.Add(this.checkout);
@@ -152,6 +156,13 @@ namespace Recreation_Center
             this.tabPage1.Size = new System.Drawing.Size(1379, 400);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Visitor Details";
+            // 
+            // weekendtxt
+            // 
+            this.weekendtxt.Location = new System.Drawing.Point(399, 14);
+            this.weekendtxt.Name = "weekendtxt";
+            this.weekendtxt.Size = new System.Drawing.Size(100, 20);
+            this.weekendtxt.TabIndex = 43;
             // 
             // isWeekend
             // 
@@ -303,7 +314,7 @@ namespace Recreation_Center
             // 
             this.indivisualcheck.AutoSize = true;
             this.indivisualcheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.indivisualcheck.Location = new System.Drawing.Point(234, 245);
+            this.indivisualcheck.Location = new System.Drawing.Point(202, 245);
             this.indivisualcheck.Name = "indivisualcheck";
             this.indivisualcheck.Size = new System.Drawing.Size(93, 20);
             this.indivisualcheck.TabIndex = 30;
@@ -444,6 +455,80 @@ namespace Recreation_Center
             this.VisitordataGridView.Size = new System.Drawing.Size(963, 320);
             this.VisitordataGridView.TabIndex = 17;
             this.VisitordataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.VisitordataGridView_CellClick);
+            // 
+            // visitorIDDataGridViewTextBoxColumn
+            // 
+            this.visitorIDDataGridViewTextBoxColumn.DataPropertyName = "VisitorID";
+            this.visitorIDDataGridViewTextBoxColumn.HeaderText = "VisitorID";
+            this.visitorIDDataGridViewTextBoxColumn.Name = "visitorIDDataGridViewTextBoxColumn";
+            this.visitorIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // phoneDataGridViewTextBoxColumn
+            // 
+            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
+            this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
+            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
+            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ageDataGridViewTextBoxColumn
+            // 
+            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            this.ageDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dayDataGridViewTextBoxColumn
+            // 
+            this.dayDataGridViewTextBoxColumn.DataPropertyName = "Day";
+            this.dayDataGridViewTextBoxColumn.HeaderText = "Day";
+            this.dayDataGridViewTextBoxColumn.Name = "dayDataGridViewTextBoxColumn";
+            this.dayDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // entryTimeDataGridViewTextBoxColumn
+            // 
+            this.entryTimeDataGridViewTextBoxColumn.DataPropertyName = "EntryTime";
+            this.entryTimeDataGridViewTextBoxColumn.HeaderText = "EntryTime";
+            this.entryTimeDataGridViewTextBoxColumn.Name = "entryTimeDataGridViewTextBoxColumn";
+            this.entryTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // exitTimeDataGridViewTextBoxColumn
+            // 
+            this.exitTimeDataGridViewTextBoxColumn.DataPropertyName = "ExitTime";
+            this.exitTimeDataGridViewTextBoxColumn.HeaderText = "ExitTime";
+            this.exitTimeDataGridViewTextBoxColumn.Name = "exitTimeDataGridViewTextBoxColumn";
+            this.exitTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // groupnoDataGridViewTextBoxColumn
+            // 
+            this.groupnoDataGridViewTextBoxColumn.DataPropertyName = "Groupno";
+            this.groupnoDataGridViewTextBoxColumn.HeaderText = "Groupno";
+            this.groupnoDataGridViewTextBoxColumn.Name = "groupnoDataGridViewTextBoxColumn";
+            this.groupnoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // visitorsBindingSource1
+            // 
+            this.visitorsBindingSource1.DataSource = typeof(Recreation_Center.Visitors);
             // 
             // Nametxt
             // 
@@ -606,90 +691,27 @@ namespace Recreation_Center
             this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // weekendtxt
-            // 
-            this.weekendtxt.Location = new System.Drawing.Point(399, 14);
-            this.weekendtxt.Name = "weekendtxt";
-            this.weekendtxt.Size = new System.Drawing.Size(100, 20);
-            this.weekendtxt.TabIndex = 43;
-            // 
             // visitorsBindingSource
             // 
             this.visitorsBindingSource.DataSource = typeof(Recreation_Center.Visitors);
             // 
-            // visitorsBindingSource1
+            // durationtxt
             // 
-            this.visitorsBindingSource1.DataSource = typeof(Recreation_Center.Visitors);
+            this.durationtxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.durationtxt.Location = new System.Drawing.Point(586, 8);
+            this.durationtxt.Name = "durationtxt";
+            this.durationtxt.Size = new System.Drawing.Size(52, 26);
+            this.durationtxt.TabIndex = 44;
             // 
-            // visitorIDDataGridViewTextBoxColumn
+            // label9
             // 
-            this.visitorIDDataGridViewTextBoxColumn.DataPropertyName = "VisitorID";
-            this.visitorIDDataGridViewTextBoxColumn.HeaderText = "VisitorID";
-            this.visitorIDDataGridViewTextBoxColumn.Name = "visitorIDDataGridViewTextBoxColumn";
-            this.visitorIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
-            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ageDataGridViewTextBoxColumn
-            // 
-            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
-            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
-            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
-            this.ageDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dayDataGridViewTextBoxColumn
-            // 
-            this.dayDataGridViewTextBoxColumn.DataPropertyName = "Day";
-            this.dayDataGridViewTextBoxColumn.HeaderText = "Day";
-            this.dayDataGridViewTextBoxColumn.Name = "dayDataGridViewTextBoxColumn";
-            this.dayDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // entryTimeDataGridViewTextBoxColumn
-            // 
-            this.entryTimeDataGridViewTextBoxColumn.DataPropertyName = "EntryTime";
-            this.entryTimeDataGridViewTextBoxColumn.HeaderText = "EntryTime";
-            this.entryTimeDataGridViewTextBoxColumn.Name = "entryTimeDataGridViewTextBoxColumn";
-            this.entryTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // exitTimeDataGridViewTextBoxColumn
-            // 
-            this.exitTimeDataGridViewTextBoxColumn.DataPropertyName = "ExitTime";
-            this.exitTimeDataGridViewTextBoxColumn.HeaderText = "ExitTime";
-            this.exitTimeDataGridViewTextBoxColumn.Name = "exitTimeDataGridViewTextBoxColumn";
-            this.exitTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // groupnoDataGridViewTextBoxColumn
-            // 
-            this.groupnoDataGridViewTextBoxColumn.DataPropertyName = "Groupno";
-            this.groupnoDataGridViewTextBoxColumn.HeaderText = "Groupno";
-            this.groupnoDataGridViewTextBoxColumn.Name = "groupnoDataGridViewTextBoxColumn";
-            this.groupnoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label9.Location = new System.Drawing.Point(510, 18);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(70, 16);
+            this.label9.TabIndex = 45;
+            this.label9.Text = "Duration:";
             // 
             // Staff
             // 
@@ -709,11 +731,11 @@ namespace Recreation_Center
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitordataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pricedataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -779,6 +801,8 @@ namespace Recreation_Center
         private System.Windows.Forms.DataGridViewTextBoxColumn groupnoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource visitorsBindingSource1;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox durationtxt;
     }
 }
 

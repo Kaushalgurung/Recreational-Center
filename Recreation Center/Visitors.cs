@@ -21,8 +21,8 @@ namespace Recreation_Center
         public string Groupno { get; set; }
         public string Price { get; set; }
 
-        private string filePath = "VisitorInformation.json";
 
+        /*
         public void Add(Visitors v)
         { 
             Random r = new Random();
@@ -49,6 +49,7 @@ namespace Recreation_Center
             string visitorInfo = JsonConvert.SerializeObject(visitorsList, Formatting.None);
             Tools.WriteToTextFile(filePath, visitorInfo, false);
         }
+        */
 
     }
 }
