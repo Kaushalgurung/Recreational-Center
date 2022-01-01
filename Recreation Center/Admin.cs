@@ -158,18 +158,19 @@ namespace Recreation_Center
 
                     p.weekdays = price20;
                     p.weekend = price21;
-
-                    InsertValuesToTable();
+                    InsertValuesToTable(); //adding value to the table
                     MessageBox.Show("Price Information Added");
-                    clear();                         // To Clear after Submitting
+                    clear();                                        // To Clear after Submitting
                 }
             }
         }
         private void InsertValuesToTable()                          // Enters data to Table
-        {
-            List<Price> Pricelist = new List<Price>();
-            Pricelist.Add(p);
-            DataTable dataTable = Tools.ToTable(Pricelist);
+        {            
+            
+            string jsonString = JsonConvert.SerializeObject(p);
+            File.WriteAllText(filePath, jsonString);
+
+            DataTable dataTable = Tools.ToTableSingle(p);
             pricedataGridView.DataSource = dataTable;                 // Source is given as datatable which contains all the inforamtion of the price
         }
         protected override void OnClosed(EventArgs e)
@@ -187,17 +188,17 @@ namespace Recreation_Center
             if (MessageBox.Show("Are you sure you want to export pre-saved data??", "Really?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)       // If User Confirms then Execute Below
             {
                 
-                string file = Tools.ReadFromTextFile(filePath);
+                string file = Tools.ReadFromTextFileMenu(filePath);
                 if (file != null)
                 {
-                    List<Price> pl  = JsonConvert.DeserializeObject<List<Price>>(file);
-                    p = pl[0];
+                    p  = JsonConvert.DeserializeObject<Price>(file);
                 }
                
                 InsertValuesToTable();
                 MessageBox.Show("Price Data Imported.");
             }
         }
+        // validating the user input data for price.
         private Boolean Validate(string price1, string price2, string price3, string price4, string price5, string price6, string price7, string price8,string price9,string price10, string price11, string price12, string price13, string price14, string price15, string price16, string price17, string price18,string price19, string price20, string price21)
         {
             if (String.IsNullOrEmpty(price1))

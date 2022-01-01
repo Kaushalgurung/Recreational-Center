@@ -36,8 +36,9 @@ namespace Recreation_Center
         public void Add (Price p)
         {
             string data = JsonConvert.SerializeObject(p, Formatting.None);
-            Tools.WriteToText(data);
+            Tools.WriteToTextFile(filePath, data);
         }
+
         public Price List()
         {
             string file = Tools.ReadFromTextFile(filePath);

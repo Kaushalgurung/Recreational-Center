@@ -48,6 +48,21 @@ namespace Recreation_Center
                 streamWriter.WriteLine(visitorInfo);
             }
         }
+        public static string ReadFromTextFileMenu(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                string info;
+                using (StreamReader r = new StreamReader(fileName))
+                {
+                    info = r.ReadToEnd();
+
+                }
+                return info;
+
+            }
+            return null;
+        }
         public static string ReadFromTextFile(string fileName)
         {
             if (File.Exists(fileName))
@@ -89,5 +104,25 @@ namespace Recreation_Center
             return table;
 
         }
+        public static DataTable ToTableSingle<T>(T list)
+        {
+            PropertyDescriptorCollection propertyDescriptor = TypeDescriptor.GetProperties(typeof(T));
+            DataTable table = new DataTable();
+
+            foreach (PropertyDescriptor i in propertyDescriptor)
+                table.Columns.Add(i.Name, Nullable.GetUnderlyingType(i.PropertyType) ?? i.PropertyType);
+
+            if (list != null)
+            {
+                    DataRow row = table.NewRow();
+                    foreach (PropertyDescriptor k in propertyDescriptor)
+                        row[k.Name] = k.GetValue(list) ?? DBNull.Value;
+                    table.Rows.Add(row);
+                
+            }
+            return table;
+
+        }
+
     }
 }
