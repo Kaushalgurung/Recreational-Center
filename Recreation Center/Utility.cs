@@ -11,8 +11,6 @@ namespace Recreation_Center
 {
     class Utility
     {
-        public static void Export() { }
-        public static void Import() { }
         public static void WriteToTextFile(String path, String data, bool append = true)
         {
             if (!File.Exists(path))

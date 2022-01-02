@@ -36,6 +36,7 @@ namespace Recreation_Center
             vsc = new List<Visitorscheckout>();
             p = new Price();
 
+
         }
         Price p;
 
@@ -1296,6 +1297,7 @@ namespace Recreation_Center
                 string data = JsonConvert.SerializeObject(vc, Formatting.None);
                 Tools.WriteToTextFile(checkoutfilepath, data);
                 InsertCheckoutValueToTable();
+                remove();
                 MessageBox.Show("Visitor Checked-out");
                 clear();
             }
@@ -1306,6 +1308,11 @@ namespace Recreation_Center
             (VisitordataGridView.DataSource as DataTable).DefaultView.RowFilter =
                 String.Format("visitorID like '%" + SearchIDtxt.Text + "%'");
         }
+        public void remove()
+        {
+            int rowIndex = VisitordataGridView.CurrentCell.RowIndex;
+            VisitordataGridView.Rows.RemoveAt(rowIndex);
+        }
 
         void refreshChart()
         {
@@ -1313,11 +1320,51 @@ namespace Recreation_Center
             dailyreportchart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
             dailyreportchart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
             dailyreportchart.Padding = new Padding(3, 3, 3, 3);
-            double totalIncomeDouble = 0;
+            int total = 0;
+            for (int i = 0; i < VisitordatacheckoutGridView.Rows.Count; ++i)
+            {
+                total += Convert.ToInt32(VisitordatacheckoutGridView.Rows[i].Cells[9].Value);
+            }
+            this.totaltxt.Text = total.ToString();
+            int child = 0;
+            foreach (DataGridViewRow row in VisitordatacheckoutGridView.Rows)
+            {
+                if (row.Cells[3].Value.ToString().Equals("1"))
+                {
+                    child++;
+                }
+                else if (row.Cells[3].Value.ToString().Equals("2"))
+                {
+                    child++;
+                }
+                else if (row.Cells[3].Value.ToString().Equals("3"))
+                {
+                    child++;
+                }
+                else if (row.Cells[3].Value.ToString().Equals("4"))
+                {
+                    child++;
+                }
+                else if (row.Cells[3].Value.ToString().Equals("5"))
+                {
+                    child++;
+                }
+                else if (row.Cells[3].Value.ToString().Equals("6"))
+                {
+                    child++;
+                }
+                else if (row.Cells[3].Value.ToString().Equals("7"))
+                {
+                    child++;
+                }
+            }
+            this.totalchildtxt.Text = child.ToString();
+
         }
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-
+            refreshChart();
         }
+
     }
 }

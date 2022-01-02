@@ -169,7 +169,6 @@ namespace Recreation_Center
             
             string jsonString = JsonConvert.SerializeObject(p);
             File.WriteAllText(filePath, jsonString);
-
             DataTable dataTable = Tools.ToTableSingle(p);
             pricedataGridView.DataSource = dataTable;                 // Source is given as datatable which contains all the inforamtion of the price
         }
