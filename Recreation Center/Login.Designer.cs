@@ -91,10 +91,10 @@ namespace Recreation_Center
             // loginlbl
             // 
             this.loginlbl.AutoSize = true;
-            this.loginlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.loginlbl.Location = new System.Drawing.Point(573, 32);
+            this.loginlbl.Font = new System.Drawing.Font("BlindMelon", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.loginlbl.Location = new System.Drawing.Point(607, 34);
             this.loginlbl.Name = "loginlbl";
-            this.loginlbl.Size = new System.Drawing.Size(115, 42);
+            this.loginlbl.Size = new System.Drawing.Size(105, 56);
             this.loginlbl.TabIndex = 5;
             this.loginlbl.Text = "Login";
             // 

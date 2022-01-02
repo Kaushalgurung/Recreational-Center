@@ -105,6 +105,7 @@
     <Compile Include="Tools.cs" />
     <Compile Include="Utility.cs" />
     <Compile Include="Visitors.cs" />
+    <Compile Include="Visitorscheckout.cs" />
     <EmbeddedResource Include="Staff.resx">
       <DependentUpon>Staff.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -129,6 +130,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Price.datasource" />
     <None Include="Properties\DataSources\Visitors.datasource" />
+    <None Include="Properties\DataSources\Visitorscheckout.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

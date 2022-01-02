@@ -20,17 +20,20 @@ namespace Recreation_Center
         int visitorID;
         private string filePath = "VisitorInformation.json";
         private string pricefilePath = "PriceInformation.json";
+        private string checkoutfilepath = "Visitorscheckout.json";
 
         List<Visitors> vs;
+        List<Visitorscheckout> vsc;
 
         public Staff()
         {
             InitializeComponent();
             label7.Visible = false;
             checkout.Visible = false;
-            checkoutbtn.Visible = false;
-            weekendtxt.Visible = false;
+            pricebtn.Visible = false;
+            weekendtxt.Visible = true;
             vs = new List<Visitors>();
+            vsc = new List<Visitorscheckout>();
             p = new Price();
 
         }
@@ -124,6 +127,18 @@ namespace Recreation_Center
             DataTable dataTable = Tools.ToTable(vs);
             VisitordataGridView.DataSource = dataTable;
         }
+        private void InsertCheckoutValueToTable()
+        {
+
+            string file = Tools.ReadFromTextFile(checkoutfilepath);
+            if (file != null)
+            {
+                vsc = JsonConvert.DeserializeObject<List<Visitorscheckout>>(file);
+
+            }
+            DataTable dataTable = Tools.ToTable(vsc);
+            VisitordatacheckoutGridView.DataSource = dataTable;
+        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -185,7 +200,6 @@ namespace Recreation_Center
             {
                 MessageBox.Show("Check weekend checkbox uncheck it.", "Empty data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
             else
             {
                 Nametxt.BackColor = System.Drawing.Color.White;
@@ -228,7 +242,7 @@ namespace Recreation_Center
                 Phonetxt.Text = VisitordataGridView.CurrentRow.Cells[2].Value.ToString();
                 agetxt.Text = VisitordataGridView.CurrentRow.Cells[3].Value.ToString();
                 checkin.Text = VisitordataGridView.CurrentRow.Cells[6].Value.ToString();
-                grouptxt.Text = VisitordataGridView.CurrentRow.Cells[8].Value.ToString();
+                grouptxt.Text = VisitordataGridView.CurrentRow.Cells[7].Value.ToString();
                 weekendtxt.Text = VisitordataGridView.CurrentRow.Cells[5].Value.ToString();
                 weekendtxt.Visible = true;
                 weekendtxt.ReadOnly = true;
@@ -241,887 +255,892 @@ namespace Recreation_Center
                 indivisualcheck.Visible = false;
                 Checkinbtn.Visible = false;
                 clearbtn.Visible = false;
-                checkoutbtn.Visible = true;
+                pricebtn.Visible = true;
                 label6.Visible = true;
                 checkin.Visible = true;
                 checkout.Visible = true;
                 label7.Visible = true;
+                isWeekend.Visible = false;
 
             }
         }
         private void checkoutbtn_Click(object sender, EventArgs e)
         {
-            if (IDtxt.Text != "")
-            {
-                DateTime dt = checkout.Value;
-                string exit = dt.ToLongTimeString();
-                Visitors v = vs.Where(visitorcheckout => visitorcheckout.VisitorID == visitorID).FirstOrDefault();
-                v.ExitTime = checkout.Text;
-                TimeSpan duration = this.checkin.Value - this.checkout.Value;
-                int d = duration.Hours;
-                //child price indivisual
-                if (int.Parse(v.Age) < 16)
+            try {
+                if (IDtxt.Text != "")
                 {
-                    if (d <= 2) //duration 1to 2 hr children
+                    DateTime dt = checkout.Value;
+                    string exit = dt.ToLongTimeString();
+                    Visitors v = vs.Where(visitorcheckout => visitorcheckout.VisitorID == visitorID).FirstOrDefault();
+                    v.ExitTime = checkout.Text;
+                    TimeSpan duration = this.checkin.Value - this.checkout.Value;
+                    int d = duration.Hours;
+                    //child price indivisual
+                    if (int.Parse(v.Age) < 16)
                     {
-                        if (int.Parse(v.Groupno) == 1)
+                        if (d <= 2) //duration 1to 2 hr children
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr)*(int.Parse(p.weekend)/100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekend) / 100));
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekdays) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr)*(int.Parse(p.weekdays)/100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno)>1 && int.Parse(v.Groupno) <= 5)
+                        else if (d > 2 && d < 4) //duration 2-4hrs
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr)*(int.Parse(p.weekend)/100)) - (int.Parse(p.child1to2hr)*(int.Parse(p.group2to5)/100));
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child2to4hr) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "weekday")
+                                {
+                                    int price = int.Parse(p.child2to4hr) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                        else if (d > 4 && d < 6) //duration 4to6 hrs
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.group5to10) / 100));
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child4to6hrs) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child1to2hr) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 10)
+                        else if (d > 6) //duration wholeday
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.groupover10) / 100));
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.childwholeday) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.childwholeday) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child1to2hr) - (int.Parse(p.child1to2hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child1to2hr) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.childwholeday) - (int.Parse(p.childwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.childwholeday) - (int.Parse(p.childwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.childwholeday) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.childwholeday) - (int.Parse(p.childwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.childwholeday) - (int.Parse(p.childwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.childwholeday) - (int.Parse(p.childwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
                     }
-                    else if (d > 2 && d < 4) //duration 2-4hrs
+                    //youth price
+                    else if (int.Parse(v.Age) > 16 && int.Parse(v.Age) < 24)
                     {
-                        if (int.Parse(v.Groupno) == 1)
+                        if (d <= 2) //duration 1to2 hrs
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child2to4hr) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth1to2hrs) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth1to2hrs) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child2to4hr) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+
+                        }
+                        else if (d > 2 && d < 4) // duration 2to4hrs
+                        {
+                            if (int.Parse(v.Groupno) == 1)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth2to4hrs) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "weekday")
+                                {
+                                    int price = int.Parse(p.youth2to4hrs) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
+                        else if (d > 4 && d < 6) //duration 4to6 hrs
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.group2to5) / 100));
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth4to6hrs) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth4to6hrs) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                        else if (d > 6) // duratopn whole day
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.group5to10) / 100));
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youthwholeday) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youthwholeday) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.child2to4hr) - (int.Parse(p.child2to4hr) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child2to4hr) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
+
                     }
-                    else if (d > 4 && d < 6) //duration 4to6 hrs
+                    //adult price calcuation
+                    else if (int.Parse(v.Age) > 16 && int.Parse(v.Age) < 24)
                     {
-                        if (int.Parse(v.Groupno) == 1)
+                        if (d <= 2) // duartion 1-2hrs
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child4to6hrs) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult1to2hrs) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult1to2hrs) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child1to2hr) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
+                        else if (d > 2 && d < 4) //duration 2-4hrs
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult2to4hrs) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "weekday")
+                                {
+                                    int price = int.Parse(p.adult2to4hrs) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                        else if (d > 4 && d < 6) //duration 4-6hrs
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult4to6hrs) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult4to6hrs) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 10)
+                        else if (d > 6) //duration wholeday
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adultwholeday) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adultwholeday) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.child4to6hrs) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.child4to6hrs) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
+
                     }
-                    else if (d > 6) //duration wholeday
+                    //Senior price 
+                    else if (int.Parse(v.Age) > 24 && int.Parse(v.Age) < 65)
                     {
-                        if (int.Parse(v.Groupno) == 1)
+                        if (d <= 2)
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.childwholeday) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior1to2hrs) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior1to2hrs) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.childwholeday) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+
+                        }
+                        else if (d > 2 && d < 4)
+                        {
+                            if (int.Parse(v.Groupno) == 1)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior2to4hrs) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "weekday")
+                                {
+                                    int price = int.Parse(p.senior2to4hrs) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
+                        else if (d > 4 && d < 6) //duration 4to6hrs
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.childwholeday) - (int.Parse(p.childwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.group2to5) / 100));
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior4to6hrs) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior4to6hrs) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.childwholeday) - (int.Parse(p.childwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                        else if (d > 6) //duration whole day
                         {
-                            if (v.Day == "Weekend")
+                            if (int.Parse(v.Groupno) == 1)
                             {
-                                int price = int.Parse(p.childwholeday) - (int.Parse(p.child4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.group5to10) / 100));
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.seniorwholeday) - int.Parse(p.weekend);
+                                    v.Price = price.ToString();
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.seniorwholeday) - int.Parse(p.weekdays);
+                                    v.Price = price.ToString();
+                                }
                             }
-                            else if (v.Day == "Weekday")
+                            else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
                             {
-                                int price = int.Parse(p.childwholeday) - (int.Parse(p.childwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.group2to5) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.group5to10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
+                                }
+                            }
+                            else if (int.Parse(v.Groupno) > 10)
+                            {
+                                if (v.Day == "Weekend")
+                                {
+                                    int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.groupover10) / 100));
+                                }
+                                else if (v.Day == "Weekday")
+                                {
+                                    int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
+                                }
                             }
                         }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.childwholeday) - (int.Parse(p.childwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.childwholeday) - (int.Parse(p.childwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.childwholeday) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
+
                     }
+                    pricetxt.Text = v.Price;
                 }
-                //youth price
-                else if (int.Parse(v.Age) > 16 && int.Parse(v.Age)<24)
+                else
                 {
-                    if (d <= 2) //duration 1to2 hrs
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth1to2hrs) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth1to2hrs) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth1to2hrs) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth1to2hrs) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-
-                    }
-                    else if (d > 2 && d < 4) // duration 2to4hrs
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth2to4hrs) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "weekday")
-                            {
-                                int price = int.Parse(p.youth2to4hrs) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth2to4hrs) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth2to4hrs) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                    }
-                    else if (d > 4 && d < 6) //duration 4to6 hrs
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth4to6hrs) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth4to6hrs) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youth4to6hrs) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youth4to6hrs) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                    }
-                    else if (d > 6 ) // duratopn whole day
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youthwholeday) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youthwholeday) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.youthwholeday) - (int.Parse(p.youthwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.youthwholeday) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                    }
-
+                    MessageBox.Show("Select a Visitor from the Visitor's table to checkout!", "No data to check-out!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-                //adult price calcuation
-                else if (int.Parse(v.Age) > 16 && int.Parse(v.Age) <24)
-                {
-                    if (d <= 2) // duartion 1-2hrs
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult1to2hrs) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult1to2hrs) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                    }
-                    else if (d > 2 && d < 4) //duration 2-4hrs
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult2to4hrs) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "weekday")
-                            {
-                                int price = int.Parse(p.adult2to4hrs) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                    }
-                    else if (d > 4 && d < 6) //duration 4-6hrs
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult4to6hrs) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult4to6hrs) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                    }
-                    else if (d > 6) //duration wholeday
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adultwholeday) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adultwholeday) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                    }
-
-                }
-                //Senior price 
-                else if (int.Parse(v.Age) > 24 && int.Parse(v.Age) < 65)
-                {
-                    if (d <= 2)
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior1to2hrs) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior1to2hrs) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-
-                    }
-                    else if (d > 2 && d < 4)
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior2to4hrs) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "weekday")
-                            {
-                                int price = int.Parse(p.senior2to4hrs) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                    }
-                    else if (d > 4 && d < 6) //duration 4to6hrs
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior4to6hrs) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior4to6hrs) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                    }
-                    else if (d > 6) //duration whole day
-                    {
-                        if (int.Parse(v.Groupno) == 1)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.seniorwholeday) - int.Parse(p.weekend);
-                                v.Price = price.ToString();
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.seniorwholeday) - int.Parse(p.weekdays);
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 1 && int.Parse(v.Groupno) <= 5)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.group2to5) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.group2to5) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 5 && int.Parse(v.Groupno) <= 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.group5to10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.group5to10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                        else if (int.Parse(v.Groupno) > 10)
-                        {
-                            if (v.Day == "Weekend")
-                            {
-                                int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.groupover10) / 100));
-                            }
-                            else if (v.Day == "Weekday")
-                            {
-                                int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekdays) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.groupover10) / 100));
-                                v.Price = price.ToString();
-                            }
-                        }
-                    }
-
-                }
-                pricetxt.Text = v.Price;
-                InsertVisitorsValueToTable();
-                MessageBox.Show("Visitor Checked-Out");
-                clear();
             }
-            else
+            catch
             {
-                MessageBox.Show("Select a Visitor from the Visitor's table to checkout!", "No data to check-out!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Import price data in the price details!", "No price data", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+            }
+
 
         private void sortbtn_Click(object sender, EventArgs e)
         {
@@ -1222,7 +1241,7 @@ namespace Recreation_Center
         {
             label7.Visible = false;
             checkout.Visible = false;
-            checkoutbtn.Visible = false;
+            pricebtn.Visible = false;
             clear();
             IDtxt.ReadOnly = false;
             Nametxt.ReadOnly = false;
@@ -1232,14 +1251,55 @@ namespace Recreation_Center
             indivisualcheck.Visible = true;
             Checkinbtn.Visible = true;
             clearbtn.Visible = true;
-            checkoutbtn.Visible = false;
+            pricebtn.Visible = false;
             label6.Visible = true;
             checkin.Visible = true;
             checkout.Visible = false;
             label7.Visible = false;
+            weekendtxt.Visible = true;
+            isWeekend.Visible = true;
 
         }
 
+        private void checkoutbtn_Click_1(object sender, EventArgs e)
+        {
+            if (pricetxt.Text == "")
+            {
+                MessageBox.Show("Price not calcuated!");
+            }
+            else if (pricetxt.Text != "")
+            {
+                string CheckoutId = IDtxt.Text;
+                string Checkoutname = Nametxt.Text;
+                string Checkoutphone = Phonetxt.Text;
+                string Checkoutage = agetxt.Text;
+                DateTime dt = checkin.Value;
+                string CheckoutEntry = dt.ToLongTimeString();
+                DateTime dt2 = checkout.Value;
+                string CheckoutExit = dt2.ToLongTimeString();
+                string Checkoutday = weekendtxt.Text;
+                string Checkoutprice = pricetxt.Text;
+                string Checkoutgroupno = grouptxt.Text;
+
+                Visitorscheckout vc = new Visitorscheckout();
+                vc.VisitorID = int.Parse(CheckoutId);
+                vc.Name = Checkoutname;
+                vc.Phone = Checkoutphone;
+                vc.Age = Checkoutage;
+                vc.Date = datetxt.Value.Date;
+                vc.Day = Checkoutday;
+                vc.EntryTime = CheckoutEntry;
+                vc.ExitTime = CheckoutExit;
+                vc.Price= Checkoutprice;
+                vc.Groupno = Checkoutgroupno;
+                vsc.Add(vc);
+                string data = JsonConvert.SerializeObject(vc, Formatting.None);
+                Tools.WriteToTextFile(checkoutfilepath, data);
+                InsertCheckoutValueToTable();
+                MessageBox.Show("Visitor Checked-out");
+                clear();
+            }
+        }
 
     }
 }

@@ -54,7 +54,28 @@ namespace Recreation_Center
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pricelist = new System.Windows.Forms.GroupBox();
             this.pricedataGridView = new System.Windows.Forms.DataGridView();
-            this.priceBindingSource5 = new System.Windows.Forms.BindingSource(this.components);
+            this.child1to2hrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.child2to4hrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.child4to6hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.childwholedayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.youth1to2hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.youth2to4hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.youth4to6hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.youthwholedayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adult1to2hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adult2to4hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adult4to6hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adultwholedayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.senior1to2hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.senior2to4hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.senior4to6hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.seniorwholedayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.group5to10DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupover10DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.weekdaysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.weekendDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceBindingSource6 = new System.Windows.Forms.BindingSource(this.components);
             this.importpricebtn = new System.Windows.Forms.Button();
             this.exportpricebtn = new System.Windows.Forms.Button();
             this.Adminlogoutbtn = new System.Windows.Forms.Button();
@@ -86,47 +107,26 @@ namespace Recreation_Center
             this.youth2 = new System.Windows.Forms.TextBox();
             this.pricelistlbl = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.priceBindingSource5 = new System.Windows.Forms.BindingSource(this.components);
             this.priceBindingSource4 = new System.Windows.Forms.BindingSource(this.components);
             this.priceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.priceBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.priceBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.priceBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.priceBindingSource6 = new System.Windows.Forms.BindingSource(this.components);
-            this.child1to2hrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.child2to4hrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.child4to6hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.childwholedayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.youth1to2hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.youth2to4hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.youth4to6hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.youthwholedayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adult1to2hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adult2to4hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adult4to6hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adultwholedayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.senior1to2hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.senior2to4hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.senior4to6hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.seniorwholedayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.group5to10DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupover10DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.weekdaysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.weekendDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pricetab.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.pricelist.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pricedataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource6)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.pricebyhour.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource6)).BeginInit();
             this.SuspendLayout();
             // 
             // rhclearbtn
@@ -336,9 +336,9 @@ namespace Recreation_Center
             // 
             this.pricelist.Controls.Add(this.pricedataGridView);
             this.pricelist.Font = new System.Drawing.Font("Lucida Fax", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.pricelist.Location = new System.Drawing.Point(6, 208);
+            this.pricelist.Location = new System.Drawing.Point(8, 292);
             this.pricelist.Name = "pricelist";
-            this.pricelist.Size = new System.Drawing.Size(1366, 322);
+            this.pricelist.Size = new System.Drawing.Size(1366, 238);
             this.pricelist.TabIndex = 35;
             this.pricelist.TabStop = false;
             this.pricelist.Text = "Price list";
@@ -372,15 +372,141 @@ namespace Recreation_Center
             this.weekdaysDataGridViewTextBoxColumn,
             this.weekendDataGridViewTextBoxColumn});
             this.pricedataGridView.DataSource = this.priceBindingSource6;
-            this.pricedataGridView.Location = new System.Drawing.Point(-6, 19);
+            this.pricedataGridView.Location = new System.Drawing.Point(-6, 22);
             this.pricedataGridView.Name = "pricedataGridView";
             this.pricedataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.pricedataGridView.Size = new System.Drawing.Size(1366, 297);
+            this.pricedataGridView.Size = new System.Drawing.Size(1366, 210);
             this.pricedataGridView.TabIndex = 34;
             // 
-            // priceBindingSource5
+            // child1to2hrDataGridViewTextBoxColumn
             // 
-            this.priceBindingSource5.DataSource = typeof(Recreation_Center.Price);
+            this.child1to2hrDataGridViewTextBoxColumn.DataPropertyName = "child1to2hr";
+            this.child1to2hrDataGridViewTextBoxColumn.HeaderText = "child1to2hr";
+            this.child1to2hrDataGridViewTextBoxColumn.Name = "child1to2hrDataGridViewTextBoxColumn";
+            // 
+            // child2to4hrDataGridViewTextBoxColumn
+            // 
+            this.child2to4hrDataGridViewTextBoxColumn.DataPropertyName = "child2to4hr";
+            this.child2to4hrDataGridViewTextBoxColumn.HeaderText = "child2to4hr";
+            this.child2to4hrDataGridViewTextBoxColumn.Name = "child2to4hrDataGridViewTextBoxColumn";
+            // 
+            // child4to6hrsDataGridViewTextBoxColumn
+            // 
+            this.child4to6hrsDataGridViewTextBoxColumn.DataPropertyName = "child4to6hrs";
+            this.child4to6hrsDataGridViewTextBoxColumn.HeaderText = "child4to6hrs";
+            this.child4to6hrsDataGridViewTextBoxColumn.Name = "child4to6hrsDataGridViewTextBoxColumn";
+            // 
+            // childwholedayDataGridViewTextBoxColumn
+            // 
+            this.childwholedayDataGridViewTextBoxColumn.DataPropertyName = "childwholeday";
+            this.childwholedayDataGridViewTextBoxColumn.HeaderText = "childwholeday";
+            this.childwholedayDataGridViewTextBoxColumn.Name = "childwholedayDataGridViewTextBoxColumn";
+            // 
+            // youth1to2hrsDataGridViewTextBoxColumn
+            // 
+            this.youth1to2hrsDataGridViewTextBoxColumn.DataPropertyName = "youth1to2hrs";
+            this.youth1to2hrsDataGridViewTextBoxColumn.HeaderText = "youth1to2hrs";
+            this.youth1to2hrsDataGridViewTextBoxColumn.Name = "youth1to2hrsDataGridViewTextBoxColumn";
+            // 
+            // youth2to4hrsDataGridViewTextBoxColumn
+            // 
+            this.youth2to4hrsDataGridViewTextBoxColumn.DataPropertyName = "youth2to4hrs";
+            this.youth2to4hrsDataGridViewTextBoxColumn.HeaderText = "youth2to4hrs";
+            this.youth2to4hrsDataGridViewTextBoxColumn.Name = "youth2to4hrsDataGridViewTextBoxColumn";
+            // 
+            // youth4to6hrsDataGridViewTextBoxColumn
+            // 
+            this.youth4to6hrsDataGridViewTextBoxColumn.DataPropertyName = "youth4to6hrs";
+            this.youth4to6hrsDataGridViewTextBoxColumn.HeaderText = "youth4to6hrs";
+            this.youth4to6hrsDataGridViewTextBoxColumn.Name = "youth4to6hrsDataGridViewTextBoxColumn";
+            // 
+            // youthwholedayDataGridViewTextBoxColumn
+            // 
+            this.youthwholedayDataGridViewTextBoxColumn.DataPropertyName = "youthwholeday";
+            this.youthwholedayDataGridViewTextBoxColumn.HeaderText = "youthwholeday";
+            this.youthwholedayDataGridViewTextBoxColumn.Name = "youthwholedayDataGridViewTextBoxColumn";
+            // 
+            // adult1to2hrsDataGridViewTextBoxColumn
+            // 
+            this.adult1to2hrsDataGridViewTextBoxColumn.DataPropertyName = "adult1to2hrs";
+            this.adult1to2hrsDataGridViewTextBoxColumn.HeaderText = "adult1to2hrs";
+            this.adult1to2hrsDataGridViewTextBoxColumn.Name = "adult1to2hrsDataGridViewTextBoxColumn";
+            // 
+            // adult2to4hrsDataGridViewTextBoxColumn
+            // 
+            this.adult2to4hrsDataGridViewTextBoxColumn.DataPropertyName = "adult2to4hrs";
+            this.adult2to4hrsDataGridViewTextBoxColumn.HeaderText = "adult2to4hrs";
+            this.adult2to4hrsDataGridViewTextBoxColumn.Name = "adult2to4hrsDataGridViewTextBoxColumn";
+            // 
+            // adult4to6hrsDataGridViewTextBoxColumn
+            // 
+            this.adult4to6hrsDataGridViewTextBoxColumn.DataPropertyName = "adult4to6hrs";
+            this.adult4to6hrsDataGridViewTextBoxColumn.HeaderText = "adult4to6hrs";
+            this.adult4to6hrsDataGridViewTextBoxColumn.Name = "adult4to6hrsDataGridViewTextBoxColumn";
+            // 
+            // adultwholedayDataGridViewTextBoxColumn
+            // 
+            this.adultwholedayDataGridViewTextBoxColumn.DataPropertyName = "adultwholeday";
+            this.adultwholedayDataGridViewTextBoxColumn.HeaderText = "adultwholeday";
+            this.adultwholedayDataGridViewTextBoxColumn.Name = "adultwholedayDataGridViewTextBoxColumn";
+            // 
+            // senior1to2hrsDataGridViewTextBoxColumn
+            // 
+            this.senior1to2hrsDataGridViewTextBoxColumn.DataPropertyName = "senior1to2hrs";
+            this.senior1to2hrsDataGridViewTextBoxColumn.HeaderText = "senior1to2hrs";
+            this.senior1to2hrsDataGridViewTextBoxColumn.Name = "senior1to2hrsDataGridViewTextBoxColumn";
+            // 
+            // senior2to4hrsDataGridViewTextBoxColumn
+            // 
+            this.senior2to4hrsDataGridViewTextBoxColumn.DataPropertyName = "senior2to4hrs";
+            this.senior2to4hrsDataGridViewTextBoxColumn.HeaderText = "senior2to4hrs";
+            this.senior2to4hrsDataGridViewTextBoxColumn.Name = "senior2to4hrsDataGridViewTextBoxColumn";
+            // 
+            // senior4to6hrsDataGridViewTextBoxColumn
+            // 
+            this.senior4to6hrsDataGridViewTextBoxColumn.DataPropertyName = "senior4to6hrs";
+            this.senior4to6hrsDataGridViewTextBoxColumn.HeaderText = "senior4to6hrs";
+            this.senior4to6hrsDataGridViewTextBoxColumn.Name = "senior4to6hrsDataGridViewTextBoxColumn";
+            // 
+            // seniorwholedayDataGridViewTextBoxColumn
+            // 
+            this.seniorwholedayDataGridViewTextBoxColumn.DataPropertyName = "seniorwholeday";
+            this.seniorwholedayDataGridViewTextBoxColumn.HeaderText = "seniorwholeday";
+            this.seniorwholedayDataGridViewTextBoxColumn.Name = "seniorwholedayDataGridViewTextBoxColumn";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "group2to5";
+            this.dataGridViewTextBoxColumn1.HeaderText = "group2to5";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // group5to10DataGridViewTextBoxColumn
+            // 
+            this.group5to10DataGridViewTextBoxColumn.DataPropertyName = "group5to10";
+            this.group5to10DataGridViewTextBoxColumn.HeaderText = "group5to10";
+            this.group5to10DataGridViewTextBoxColumn.Name = "group5to10DataGridViewTextBoxColumn";
+            // 
+            // groupover10DataGridViewTextBoxColumn
+            // 
+            this.groupover10DataGridViewTextBoxColumn.DataPropertyName = "groupover10";
+            this.groupover10DataGridViewTextBoxColumn.HeaderText = "groupover10";
+            this.groupover10DataGridViewTextBoxColumn.Name = "groupover10DataGridViewTextBoxColumn";
+            // 
+            // weekdaysDataGridViewTextBoxColumn
+            // 
+            this.weekdaysDataGridViewTextBoxColumn.DataPropertyName = "weekdays";
+            this.weekdaysDataGridViewTextBoxColumn.HeaderText = "weekdays";
+            this.weekdaysDataGridViewTextBoxColumn.Name = "weekdaysDataGridViewTextBoxColumn";
+            // 
+            // weekendDataGridViewTextBoxColumn
+            // 
+            this.weekendDataGridViewTextBoxColumn.DataPropertyName = "weekend";
+            this.weekendDataGridViewTextBoxColumn.HeaderText = "weekend";
+            this.weekendDataGridViewTextBoxColumn.Name = "weekendDataGridViewTextBoxColumn";
+            // 
+            // priceBindingSource6
+            // 
+            this.priceBindingSource6.DataSource = typeof(Recreation_Center.Price);
             // 
             // importpricebtn
             // 
@@ -692,10 +818,10 @@ namespace Recreation_Center
             // pricelistlbl
             // 
             this.pricelistlbl.AutoSize = true;
-            this.pricelistlbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pricelistlbl.Location = new System.Drawing.Point(607, 177);
+            this.pricelistlbl.Font = new System.Drawing.Font("BlindMelon", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pricelistlbl.Location = new System.Drawing.Point(617, 238);
             this.pricelistlbl.Name = "pricelistlbl";
-            this.pricelistlbl.Size = new System.Drawing.Size(111, 25);
+            this.pricelistlbl.Size = new System.Drawing.Size(158, 51);
             this.pricelistlbl.TabIndex = 0;
             this.pricelistlbl.Text = "Price List";
             // 
@@ -707,6 +833,10 @@ namespace Recreation_Center
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Weekly Reports";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // priceBindingSource5
+            // 
+            this.priceBindingSource5.DataSource = typeof(Recreation_Center.Price);
             // 
             // priceBindingSource4
             // 
@@ -728,136 +858,6 @@ namespace Recreation_Center
             // 
             this.priceBindingSource2.DataSource = typeof(Recreation_Center.Price);
             // 
-            // priceBindingSource6
-            // 
-            this.priceBindingSource6.DataSource = typeof(Recreation_Center.Price);
-            // 
-            // child1to2hrDataGridViewTextBoxColumn
-            // 
-            this.child1to2hrDataGridViewTextBoxColumn.DataPropertyName = "child1to2hr";
-            this.child1to2hrDataGridViewTextBoxColumn.HeaderText = "child1to2hr";
-            this.child1to2hrDataGridViewTextBoxColumn.Name = "child1to2hrDataGridViewTextBoxColumn";
-            // 
-            // child2to4hrDataGridViewTextBoxColumn
-            // 
-            this.child2to4hrDataGridViewTextBoxColumn.DataPropertyName = "child2to4hr";
-            this.child2to4hrDataGridViewTextBoxColumn.HeaderText = "child2to4hr";
-            this.child2to4hrDataGridViewTextBoxColumn.Name = "child2to4hrDataGridViewTextBoxColumn";
-            // 
-            // child4to6hrsDataGridViewTextBoxColumn
-            // 
-            this.child4to6hrsDataGridViewTextBoxColumn.DataPropertyName = "child4to6hrs";
-            this.child4to6hrsDataGridViewTextBoxColumn.HeaderText = "child4to6hrs";
-            this.child4to6hrsDataGridViewTextBoxColumn.Name = "child4to6hrsDataGridViewTextBoxColumn";
-            // 
-            // childwholedayDataGridViewTextBoxColumn
-            // 
-            this.childwholedayDataGridViewTextBoxColumn.DataPropertyName = "childwholeday";
-            this.childwholedayDataGridViewTextBoxColumn.HeaderText = "childwholeday";
-            this.childwholedayDataGridViewTextBoxColumn.Name = "childwholedayDataGridViewTextBoxColumn";
-            // 
-            // youth1to2hrsDataGridViewTextBoxColumn
-            // 
-            this.youth1to2hrsDataGridViewTextBoxColumn.DataPropertyName = "youth1to2hrs";
-            this.youth1to2hrsDataGridViewTextBoxColumn.HeaderText = "youth1to2hrs";
-            this.youth1to2hrsDataGridViewTextBoxColumn.Name = "youth1to2hrsDataGridViewTextBoxColumn";
-            // 
-            // youth2to4hrsDataGridViewTextBoxColumn
-            // 
-            this.youth2to4hrsDataGridViewTextBoxColumn.DataPropertyName = "youth2to4hrs";
-            this.youth2to4hrsDataGridViewTextBoxColumn.HeaderText = "youth2to4hrs";
-            this.youth2to4hrsDataGridViewTextBoxColumn.Name = "youth2to4hrsDataGridViewTextBoxColumn";
-            // 
-            // youth4to6hrsDataGridViewTextBoxColumn
-            // 
-            this.youth4to6hrsDataGridViewTextBoxColumn.DataPropertyName = "youth4to6hrs";
-            this.youth4to6hrsDataGridViewTextBoxColumn.HeaderText = "youth4to6hrs";
-            this.youth4to6hrsDataGridViewTextBoxColumn.Name = "youth4to6hrsDataGridViewTextBoxColumn";
-            // 
-            // youthwholedayDataGridViewTextBoxColumn
-            // 
-            this.youthwholedayDataGridViewTextBoxColumn.DataPropertyName = "youthwholeday";
-            this.youthwholedayDataGridViewTextBoxColumn.HeaderText = "youthwholeday";
-            this.youthwholedayDataGridViewTextBoxColumn.Name = "youthwholedayDataGridViewTextBoxColumn";
-            // 
-            // adult1to2hrsDataGridViewTextBoxColumn
-            // 
-            this.adult1to2hrsDataGridViewTextBoxColumn.DataPropertyName = "adult1to2hrs";
-            this.adult1to2hrsDataGridViewTextBoxColumn.HeaderText = "adult1to2hrs";
-            this.adult1to2hrsDataGridViewTextBoxColumn.Name = "adult1to2hrsDataGridViewTextBoxColumn";
-            // 
-            // adult2to4hrsDataGridViewTextBoxColumn
-            // 
-            this.adult2to4hrsDataGridViewTextBoxColumn.DataPropertyName = "adult2to4hrs";
-            this.adult2to4hrsDataGridViewTextBoxColumn.HeaderText = "adult2to4hrs";
-            this.adult2to4hrsDataGridViewTextBoxColumn.Name = "adult2to4hrsDataGridViewTextBoxColumn";
-            // 
-            // adult4to6hrsDataGridViewTextBoxColumn
-            // 
-            this.adult4to6hrsDataGridViewTextBoxColumn.DataPropertyName = "adult4to6hrs";
-            this.adult4to6hrsDataGridViewTextBoxColumn.HeaderText = "adult4to6hrs";
-            this.adult4to6hrsDataGridViewTextBoxColumn.Name = "adult4to6hrsDataGridViewTextBoxColumn";
-            // 
-            // adultwholedayDataGridViewTextBoxColumn
-            // 
-            this.adultwholedayDataGridViewTextBoxColumn.DataPropertyName = "adultwholeday";
-            this.adultwholedayDataGridViewTextBoxColumn.HeaderText = "adultwholeday";
-            this.adultwholedayDataGridViewTextBoxColumn.Name = "adultwholedayDataGridViewTextBoxColumn";
-            // 
-            // senior1to2hrsDataGridViewTextBoxColumn
-            // 
-            this.senior1to2hrsDataGridViewTextBoxColumn.DataPropertyName = "senior1to2hrs";
-            this.senior1to2hrsDataGridViewTextBoxColumn.HeaderText = "senior1to2hrs";
-            this.senior1to2hrsDataGridViewTextBoxColumn.Name = "senior1to2hrsDataGridViewTextBoxColumn";
-            // 
-            // senior2to4hrsDataGridViewTextBoxColumn
-            // 
-            this.senior2to4hrsDataGridViewTextBoxColumn.DataPropertyName = "senior2to4hrs";
-            this.senior2to4hrsDataGridViewTextBoxColumn.HeaderText = "senior2to4hrs";
-            this.senior2to4hrsDataGridViewTextBoxColumn.Name = "senior2to4hrsDataGridViewTextBoxColumn";
-            // 
-            // senior4to6hrsDataGridViewTextBoxColumn
-            // 
-            this.senior4to6hrsDataGridViewTextBoxColumn.DataPropertyName = "senior4to6hrs";
-            this.senior4to6hrsDataGridViewTextBoxColumn.HeaderText = "senior4to6hrs";
-            this.senior4to6hrsDataGridViewTextBoxColumn.Name = "senior4to6hrsDataGridViewTextBoxColumn";
-            // 
-            // seniorwholedayDataGridViewTextBoxColumn
-            // 
-            this.seniorwholedayDataGridViewTextBoxColumn.DataPropertyName = "seniorwholeday";
-            this.seniorwholedayDataGridViewTextBoxColumn.HeaderText = "seniorwholeday";
-            this.seniorwholedayDataGridViewTextBoxColumn.Name = "seniorwholedayDataGridViewTextBoxColumn";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "group2to5";
-            this.dataGridViewTextBoxColumn1.HeaderText = "group2to5";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // group5to10DataGridViewTextBoxColumn
-            // 
-            this.group5to10DataGridViewTextBoxColumn.DataPropertyName = "group5to10";
-            this.group5to10DataGridViewTextBoxColumn.HeaderText = "group5to10";
-            this.group5to10DataGridViewTextBoxColumn.Name = "group5to10DataGridViewTextBoxColumn";
-            // 
-            // groupover10DataGridViewTextBoxColumn
-            // 
-            this.groupover10DataGridViewTextBoxColumn.DataPropertyName = "groupover10";
-            this.groupover10DataGridViewTextBoxColumn.HeaderText = "groupover10";
-            this.groupover10DataGridViewTextBoxColumn.Name = "groupover10DataGridViewTextBoxColumn";
-            // 
-            // weekdaysDataGridViewTextBoxColumn
-            // 
-            this.weekdaysDataGridViewTextBoxColumn.DataPropertyName = "weekdays";
-            this.weekdaysDataGridViewTextBoxColumn.HeaderText = "weekdays";
-            this.weekdaysDataGridViewTextBoxColumn.Name = "weekdaysDataGridViewTextBoxColumn";
-            // 
-            // weekendDataGridViewTextBoxColumn
-            // 
-            this.weekendDataGridViewTextBoxColumn.DataPropertyName = "weekend";
-            this.weekendDataGridViewTextBoxColumn.HeaderText = "weekend";
-            this.weekendDataGridViewTextBoxColumn.Name = "weekendDataGridViewTextBoxColumn";
-            // 
             // Admin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -874,19 +874,19 @@ namespace Recreation_Center
             this.tabPage2.PerformLayout();
             this.pricelist.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pricedataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource6)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.pricebyhour.ResumeLayout(false);
             this.pricebyhour.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource6)).EndInit();
             this.ResumeLayout(false);
 
         }
