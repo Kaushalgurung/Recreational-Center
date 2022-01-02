@@ -1326,38 +1326,32 @@ namespace Recreation_Center
                 total += Convert.ToInt32(VisitordatacheckoutGridView.Rows[i].Cells[9].Value);
             }
             this.totaltxt.Text = total.ToString();
+            
             int child = 0;
-            foreach (DataGridViewRow row in VisitordatacheckoutGridView.Rows)
+            for (int i = 0; i < (VisitordatacheckoutGridView.Rows.Count - 1); i++)
             {
-                if (row.Cells[3].Value.ToString().Equals("1"))
+                if ((VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "1") 
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "2")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "3")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "4")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "5")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "6")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "7")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "8")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "9")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "10")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "1")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "12")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "13")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "14")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "15")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "16")
+                    || (VisitordatacheckoutGridView.Rows[i].Cells["ageDataGridViewTextBoxColumn1"].Value.ToString() == "21")                    )
                 {
-                    child++;
-                }
-                else if (row.Cells[3].Value.ToString().Equals("2"))
-                {
-                    child++;
-                }
-                else if (row.Cells[3].Value.ToString().Equals("3"))
-                {
-                    child++;
-                }
-                else if (row.Cells[3].Value.ToString().Equals("4"))
-                {
-                    child++;
-                }
-                else if (row.Cells[3].Value.ToString().Equals("5"))
-                {
-                    child++;
-                }
-                else if (row.Cells[3].Value.ToString().Equals("6"))
-                {
-                    child++;
-                }
-                else if (row.Cells[3].Value.ToString().Equals("7"))
-                {
-                    child++;
+                    child += 1;
                 }
             }
+
             this.totalchildtxt.Text = child.ToString();
 
         }
