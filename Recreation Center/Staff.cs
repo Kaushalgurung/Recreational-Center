@@ -725,6 +725,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -737,6 +738,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -749,6 +751,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adult1to2hrs) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult1to2hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -777,6 +780,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -789,6 +793,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -801,6 +806,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adult2to4hrs) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult2to4hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -829,6 +835,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -841,6 +848,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -853,6 +861,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adult4to6hrs) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adult4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -881,6 +890,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -893,6 +903,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -905,6 +916,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.adultwholeday) - (int.Parse(p.adultwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.adultwholeday) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -938,6 +950,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -950,6 +963,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -962,6 +976,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.senior1to2hrs) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior1to2hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -991,6 +1006,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -1003,6 +1019,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -1015,6 +1032,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.senior2to4hrs) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior2to4hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -1043,6 +1061,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -1055,6 +1074,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -1067,6 +1087,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.senior4to6hrs) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.senior4to6hrs) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -1095,6 +1116,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.group2to5) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -1107,6 +1129,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.group5to10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {
@@ -1119,6 +1142,7 @@ namespace Recreation_Center
                                 if (v.Day == "Weekend")
                                 {
                                     int price = int.Parse(p.seniorwholeday) - (int.Parse(p.seniorwholeday) * (int.Parse(p.weekend) / 100)) - (int.Parse(p.seniorwholeday) * (int.Parse(p.groupover10) / 100));
+                                    v.Price = price.ToString();
                                 }
                                 else if (v.Day == "Weekday")
                                 {

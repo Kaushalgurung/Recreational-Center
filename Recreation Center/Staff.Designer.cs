@@ -119,16 +119,25 @@ namespace Recreation_Center
             this.label8 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.totaladulttxt = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.totalchildtxt = new System.Windows.Forms.TextBox();
+            this.totalseniortxt = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.totalyouthtxt = new System.Windows.Forms.TextBox();
+            this.totalchildtxt = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.totaladulttxt = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.chartbtn = new System.Windows.Forms.Button();
             this.totaltxt = new System.Windows.Forms.TextBox();
             this.Totalpricelbl = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.visitorscheckoutBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dailyreportchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.weeklyreportchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.visitorsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.visitorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.VisitordatacheckoutGridView = new System.Windows.Forms.DataGridView();
             this.visitorIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -140,26 +149,6 @@ namespace Recreation_Center
             this.exitTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupnoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.visitorscheckoutBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dailyreportchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.weeklyreportchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.visitorsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.visitorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.totalyouthtxt = new System.Windows.Forms.TextBox();
-            this.totalseniortxt = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -172,14 +161,13 @@ namespace Recreation_Center
             ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VisitordatacheckoutGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorscheckoutBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dailyreportchart)).BeginInit();
             this.tabPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weeklyreportchart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VisitordatacheckoutGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -1038,7 +1026,6 @@ namespace Recreation_Center
             this.tabPage3.Controls.Add(this.totaltxt);
             this.tabPage3.Controls.Add(this.Totalpricelbl);
             this.tabPage3.Controls.Add(this.dateTimePicker1);
-            this.tabPage3.Controls.Add(this.VisitordatacheckoutGridView);
             this.tabPage3.Controls.Add(this.dailyreportchart);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -1065,33 +1052,39 @@ namespace Recreation_Center
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Total Visitors by age:";
             // 
-            // label15
+            // totalseniortxt
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(23, 106);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(47, 13);
-            this.label15.TabIndex = 11;
-            this.label15.Text = "Senior:";
+            this.totalseniortxt.Location = new System.Drawing.Point(98, 103);
+            this.totalseniortxt.Name = "totalseniortxt";
+            this.totalseniortxt.ReadOnly = true;
+            this.totalseniortxt.Size = new System.Drawing.Size(30, 21);
+            this.totalseniortxt.TabIndex = 14;
             // 
-            // label14
+            // label12
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(23, 80);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(40, 13);
-            this.label14.TabIndex = 10;
-            this.label14.Text = "Adult:";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(24, 32);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(39, 13);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "Child:";
             // 
-            // totaladulttxt
+            // totalyouthtxt
             // 
-            this.totaladulttxt.Location = new System.Drawing.Point(98, 77);
-            this.totaladulttxt.Name = "totaladulttxt";
-            this.totaladulttxt.ReadOnly = true;
-            this.totaladulttxt.Size = new System.Drawing.Size(30, 21);
-            this.totaladulttxt.TabIndex = 9;
+            this.totalyouthtxt.Location = new System.Drawing.Point(98, 53);
+            this.totalyouthtxt.Name = "totalyouthtxt";
+            this.totalyouthtxt.ReadOnly = true;
+            this.totalyouthtxt.Size = new System.Drawing.Size(30, 21);
+            this.totalyouthtxt.TabIndex = 13;
+            // 
+            // totalchildtxt
+            // 
+            this.totalchildtxt.Location = new System.Drawing.Point(98, 29);
+            this.totalchildtxt.Name = "totalchildtxt";
+            this.totalchildtxt.ReadOnly = true;
+            this.totalchildtxt.Size = new System.Drawing.Size(30, 21);
+            this.totalchildtxt.TabIndex = 7;
             // 
             // label13
             // 
@@ -1103,23 +1096,33 @@ namespace Recreation_Center
             this.label13.TabIndex = 8;
             this.label13.Text = "Youth:";
             // 
-            // totalchildtxt
+            // label15
             // 
-            this.totalchildtxt.Location = new System.Drawing.Point(98, 29);
-            this.totalchildtxt.Name = "totalchildtxt";
-            this.totalchildtxt.ReadOnly = true;
-            this.totalchildtxt.Size = new System.Drawing.Size(30, 21);
-            this.totalchildtxt.TabIndex = 7;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(23, 106);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(47, 13);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "Senior:";
             // 
-            // label12
+            // totaladulttxt
             // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(24, 32);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(39, 13);
-            this.label12.TabIndex = 6;
-            this.label12.Text = "Child:";
+            this.totaladulttxt.Location = new System.Drawing.Point(98, 77);
+            this.totaladulttxt.Name = "totaladulttxt";
+            this.totaladulttxt.ReadOnly = true;
+            this.totaladulttxt.Size = new System.Drawing.Size(30, 21);
+            this.totaladulttxt.TabIndex = 9;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(23, 80);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(40, 13);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "Adult:";
             // 
             // chartbtn
             // 
@@ -1157,6 +1160,68 @@ namespace Recreation_Center
             this.dateTimePicker1.TabIndex = 2;
             this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
+            // visitorscheckoutBindingSource
+            // 
+            this.visitorscheckoutBindingSource.DataSource = typeof(Recreation_Center.Visitorscheckout);
+            // 
+            // dailyreportchart
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.dailyreportchart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.dailyreportchart.Legends.Add(legend1);
+            this.dailyreportchart.Location = new System.Drawing.Point(13, 26);
+            this.dailyreportchart.Name = "dailyreportchart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.dailyreportchart.Series.Add(series1);
+            this.dailyreportchart.Size = new System.Drawing.Size(427, 386);
+            this.dailyreportchart.TabIndex = 0;
+            this.dailyreportchart.Text = "dailyreportchart";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.VisitordatacheckoutGridView);
+            this.tabPage4.Controls.Add(this.weeklyreportchart);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1379, 440);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Weekly Reports";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // weeklyreportchart
+            // 
+            this.weeklyreportchart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            this.weeklyreportchart.BorderlineWidth = 10;
+            chartArea2.Name = "ChartArea1";
+            this.weeklyreportchart.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.weeklyreportchart.Legends.Add(legend2);
+            this.weeklyreportchart.Location = new System.Drawing.Point(3, 17);
+            this.weeklyreportchart.Name = "weeklyreportchart";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.weeklyreportchart.Series.Add(series2);
+            this.weeklyreportchart.Size = new System.Drawing.Size(426, 391);
+            this.weeklyreportchart.TabIndex = 0;
+            this.weeklyreportchart.Text = "chart2";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // visitorsBindingSource1
+            // 
+            this.visitorsBindingSource1.DataSource = typeof(Recreation_Center.Visitors);
+            // 
+            // visitorsBindingSource
+            // 
+            this.visitorsBindingSource.DataSource = typeof(Recreation_Center.Visitors);
+            // 
             // VisitordatacheckoutGridView
             // 
             this.VisitordatacheckoutGridView.AutoGenerateColumns = false;
@@ -1173,10 +1238,10 @@ namespace Recreation_Center
             this.groupnoDataGridViewTextBoxColumn1,
             this.priceDataGridViewTextBoxColumn});
             this.VisitordatacheckoutGridView.DataSource = this.visitorscheckoutBindingSource;
-            this.VisitordatacheckoutGridView.Location = new System.Drawing.Point(457, 82);
+            this.VisitordatacheckoutGridView.Location = new System.Drawing.Point(414, 50);
             this.VisitordatacheckoutGridView.Name = "VisitordatacheckoutGridView";
             this.VisitordatacheckoutGridView.Size = new System.Drawing.Size(919, 199);
-            this.VisitordatacheckoutGridView.TabIndex = 1;
+            this.VisitordatacheckoutGridView.TabIndex = 2;
             // 
             // visitorIDDataGridViewTextBoxColumn1
             // 
@@ -1244,171 +1309,6 @@ namespace Recreation_Center
             this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             // 
-            // visitorscheckoutBindingSource
-            // 
-            this.visitorscheckoutBindingSource.DataSource = typeof(Recreation_Center.Visitorscheckout);
-            // 
-            // dailyreportchart
-            // 
-            chartArea1.Name = "ChartArea1";
-            this.dailyreportchart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.dailyreportchart.Legends.Add(legend1);
-            this.dailyreportchart.Location = new System.Drawing.Point(13, 26);
-            this.dailyreportchart.Name = "dailyreportchart";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.dailyreportchart.Series.Add(series1);
-            this.dailyreportchart.Size = new System.Drawing.Size(427, 386);
-            this.dailyreportchart.TabIndex = 0;
-            this.dailyreportchart.Text = "dailyreportchart";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.dataGridView1);
-            this.tabPage4.Controls.Add(this.weeklyreportchart);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1379, 440);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Weekly Reports";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10});
-            this.dataGridView1.DataSource = this.visitorscheckoutBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(435, 108);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(930, 150);
-            this.dataGridView1.TabIndex = 2;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "VisitorID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "VisitorID";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Name";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Name";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 150;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Phone";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Phone";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Age";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Age";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Date";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Date";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Day";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Day";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "EntryTime";
-            this.dataGridViewTextBoxColumn7.HeaderText = "EntryTime";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "ExitTime";
-            this.dataGridViewTextBoxColumn8.HeaderText = "ExitTime";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Width = 75;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "Groupno";
-            this.dataGridViewTextBoxColumn9.HeaderText = "Groupno";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Width = 65;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "Price";
-            this.dataGridViewTextBoxColumn10.HeaderText = "Price";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            // 
-            // weeklyreportchart
-            // 
-            this.weeklyreportchart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            this.weeklyreportchart.BorderlineWidth = 10;
-            chartArea2.Name = "ChartArea1";
-            this.weeklyreportchart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.weeklyreportchart.Legends.Add(legend2);
-            this.weeklyreportchart.Location = new System.Drawing.Point(3, 17);
-            this.weeklyreportchart.Name = "weeklyreportchart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.weeklyreportchart.Series.Add(series2);
-            this.weeklyreportchart.Size = new System.Drawing.Size(426, 391);
-            this.weeklyreportchart.TabIndex = 0;
-            this.weeklyreportchart.Text = "chart2";
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // visitorsBindingSource1
-            // 
-            this.visitorsBindingSource1.DataSource = typeof(Recreation_Center.Visitors);
-            // 
-            // visitorsBindingSource
-            // 
-            this.visitorsBindingSource.DataSource = typeof(Recreation_Center.Visitors);
-            // 
-            // totalyouthtxt
-            // 
-            this.totalyouthtxt.Location = new System.Drawing.Point(98, 53);
-            this.totalyouthtxt.Name = "totalyouthtxt";
-            this.totalyouthtxt.ReadOnly = true;
-            this.totalyouthtxt.Size = new System.Drawing.Size(30, 21);
-            this.totalyouthtxt.TabIndex = 13;
-            // 
-            // totalseniortxt
-            // 
-            this.totalseniortxt.Location = new System.Drawing.Point(98, 103);
-            this.totalseniortxt.Name = "totalseniortxt";
-            this.totalseniortxt.ReadOnly = true;
-            this.totalseniortxt.Size = new System.Drawing.Size(30, 21);
-            this.totalseniortxt.TabIndex = 14;
-            // 
             // Staff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1438,14 +1338,13 @@ namespace Recreation_Center
             this.tabPage3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.VisitordatacheckoutGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorscheckoutBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dailyreportchart)).EndInit();
             this.tabPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.weeklyreportchart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.VisitordatacheckoutGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1513,7 +1412,6 @@ namespace Recreation_Center
         private System.Windows.Forms.DataGridViewTextBoxColumn groupnoDataGridViewTextBoxColumn;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView VisitordatacheckoutGridView;
         private System.Windows.Forms.BindingSource visitorscheckoutBindingSource;
         private System.Windows.Forms.Button checkoutbtn;
         private System.Windows.Forms.BindingSource priceBindingSource;
@@ -1542,27 +1440,6 @@ namespace Recreation_Center
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label Visitorslbl;
-        private System.Windows.Forms.DataGridViewTextBoxColumn visitorIDDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dayDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn entryTimeDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn exitTimeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn groupnoDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.TextBox totaltxt;
         private System.Windows.Forms.Label Totalpricelbl;
@@ -1576,6 +1453,17 @@ namespace Recreation_Center
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox totalseniortxt;
         private System.Windows.Forms.TextBox totalyouthtxt;
+        private System.Windows.Forms.DataGridView VisitordatacheckoutGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn visitorIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dayDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn entryTimeDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn exitTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn groupnoDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
     }
 }
 
