@@ -489,7 +489,7 @@ namespace Recreation_Center
                         }
                     }
                     //youth price
-                    else if (int.Parse(v.Age) > 16 && int.Parse(v.Age) < 24)
+                    else if (int.Parse(v.Age) > 15 && int.Parse(v.Age) < 24)
                     {
                         if (d <= 2) //duration 1to2 hrs
                         {
@@ -703,7 +703,7 @@ namespace Recreation_Center
 
                     }
                     //adult price calcuation
-                    else if (int.Parse(v.Age) > 16 && int.Parse(v.Age) < 24)
+                    else if (int.Parse(v.Age) > 23 && int.Parse(v.Age) < 65)
                     {
                         if (d <= 2) // duartion 1-2hrs
                         {
@@ -916,7 +916,7 @@ namespace Recreation_Center
 
                     }
                     //Senior price 
-                    else if (int.Parse(v.Age) > 24 && int.Parse(v.Age) < 65)
+                    else if (int.Parse(v.Age) > 64 && int.Parse(v.Age) < 100)
                     {
                         if (d <= 2)
                         {
@@ -1129,6 +1129,11 @@ namespace Recreation_Center
                         }
 
                     }
+                    else if (int.Parse(v.Age) > 100)
+                    {
+                        int price = 0;
+                        v.Price = price.ToString();
+                    }
                     pricetxt.Text = v.Price;
                 }
                 else
@@ -1140,7 +1145,7 @@ namespace Recreation_Center
             {
                 MessageBox.Show("Import price data in the price details!", "No price data", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            }
+        }
 
 
         private void sortbtn_Click(object sender, EventArgs e)
@@ -1253,6 +1258,7 @@ namespace Recreation_Center
             Checkinbtn.Visible = true;
             clearbtn.Visible = true;
             pricebtn.Visible = false;
+            checkout.Visible = false;
             label6.Visible = true;
             checkin.Visible = true;
             checkout.Visible = false;
