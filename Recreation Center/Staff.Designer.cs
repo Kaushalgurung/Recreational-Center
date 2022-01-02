@@ -30,27 +30,19 @@ namespace Recreation_Center
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.Visitorslbl = new System.Windows.Forms.Label();
             this.checkoutbtn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.VisitordataGridView = new System.Windows.Forms.DataGridView();
-            this.visitorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.entryTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.groupnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.visitorsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.weekendtxt = new System.Windows.Forms.TextBox();
             this.isWeekend = new System.Windows.Forms.CheckBox();
             this.checkout = new System.Windows.Forms.DateTimePicker();
@@ -88,10 +80,29 @@ namespace Recreation_Center
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.pricedataGridView = new System.Windows.Forms.DataGridView();
             this.getprice = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.pricedataGridView = new System.Windows.Forms.DataGridView();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.VisitordatacheckoutGridView = new System.Windows.Forms.DataGridView();
+            this.dailyreportchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.weeklyreportchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.visitorIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.entryTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.visitorsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             this.child1to2hrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.child2to4hrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.child4to6hrsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -114,18 +125,6 @@ namespace Recreation_Center
             this.weekdaysDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.weekendDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.VisitordatacheckoutGridView = new System.Windows.Forms.DataGridView();
-            this.visitorscheckoutBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dailyreportchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.weeklyreportchart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.visitorsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.visitorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.Visitorslbl = new System.Windows.Forms.Label();
             this.visitorIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.phoneDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -136,7 +135,7 @@ namespace Recreation_Center
             this.exitTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupnoDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.visitorscheckoutBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -147,25 +146,30 @@ namespace Recreation_Center
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.visitorsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.visitorsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Totalpricelbl = new System.Windows.Forms.Label();
+            this.totaltxt = new System.Windows.Forms.TextBox();
+            this.chartbtn = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitordataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource2)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pricedataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitordatacheckoutGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorscheckoutBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dailyreportchart)).BeginInit();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.weeklyreportchart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorscheckoutBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -226,6 +230,16 @@ namespace Recreation_Center
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Visitor Details";
             // 
+            // Visitorslbl
+            // 
+            this.Visitorslbl.AutoSize = true;
+            this.Visitorslbl.Font = new System.Drawing.Font("BlindMelon", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Visitorslbl.Location = new System.Drawing.Point(755, 7);
+            this.Visitorslbl.Name = "Visitorslbl";
+            this.Visitorslbl.Size = new System.Drawing.Size(267, 56);
+            this.Visitorslbl.TabIndex = 47;
+            this.Visitorslbl.Text = "Visitors Detail";
+            // 
             // checkoutbtn
             // 
             this.checkoutbtn.BackColor = System.Drawing.Color.OrangeRed;
@@ -285,66 +299,6 @@ namespace Recreation_Center
             this.VisitordataGridView.Size = new System.Drawing.Size(843, 242);
             this.VisitordataGridView.TabIndex = 17;
             this.VisitordataGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.VisitordataGridView_CellClick);
-            // 
-            // visitorIDDataGridViewTextBoxColumn
-            // 
-            this.visitorIDDataGridViewTextBoxColumn.DataPropertyName = "VisitorID";
-            this.visitorIDDataGridViewTextBoxColumn.HeaderText = "VisitorID";
-            this.visitorIDDataGridViewTextBoxColumn.Name = "visitorIDDataGridViewTextBoxColumn";
-            this.visitorIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // phoneDataGridViewTextBoxColumn
-            // 
-            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
-            this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
-            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
-            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ageDataGridViewTextBoxColumn
-            // 
-            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
-            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
-            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
-            this.ageDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dayDataGridViewTextBoxColumn
-            // 
-            this.dayDataGridViewTextBoxColumn.DataPropertyName = "Day";
-            this.dayDataGridViewTextBoxColumn.HeaderText = "Day";
-            this.dayDataGridViewTextBoxColumn.Name = "dayDataGridViewTextBoxColumn";
-            this.dayDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // entryTimeDataGridViewTextBoxColumn
-            // 
-            this.entryTimeDataGridViewTextBoxColumn.DataPropertyName = "EntryTime";
-            this.entryTimeDataGridViewTextBoxColumn.HeaderText = "EntryTime";
-            this.entryTimeDataGridViewTextBoxColumn.Name = "entryTimeDataGridViewTextBoxColumn";
-            this.entryTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // groupnoDataGridViewTextBoxColumn
-            // 
-            this.groupnoDataGridViewTextBoxColumn.DataPropertyName = "Groupno";
-            this.groupnoDataGridViewTextBoxColumn.HeaderText = "Groupno";
-            this.groupnoDataGridViewTextBoxColumn.Name = "groupnoDataGridViewTextBoxColumn";
-            this.groupnoDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // visitorsBindingSource2
-            // 
-            this.visitorsBindingSource2.DataSource = typeof(Recreation_Center.Visitors);
             // 
             // weekendtxt
             // 
@@ -433,6 +387,7 @@ namespace Recreation_Center
             this.Searchbtn.TabIndex = 34;
             this.Searchbtn.Text = "Search";
             this.Searchbtn.UseVisualStyleBackColor = true;
+            this.Searchbtn.Click += new System.EventHandler(this.Searchbtn_Click);
             // 
             // SearchIDtxt
             // 
@@ -726,6 +681,26 @@ namespace Recreation_Center
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Price Details";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("MV Boli", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(562, 91);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(362, 34);
+            this.label11.TabIndex = 39;
+            this.label11.Text = "Where Fun Meets Fitness";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(537, 159);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(290, 31);
+            this.label10.TabIndex = 38;
+            this.label10.Text = "Today\'s Price Details";
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.pricedataGridView);
@@ -736,29 +711,6 @@ namespace Recreation_Center
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Price List";
-            // 
-            // getprice
-            // 
-            this.getprice.BackColor = System.Drawing.Color.Yellow;
-            this.getprice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.getprice.Location = new System.Drawing.Point(1263, 165);
-            this.getprice.Name = "getprice";
-            this.getprice.Size = new System.Drawing.Size(98, 30);
-            this.getprice.TabIndex = 36;
-            this.getprice.Text = "View Price";
-            this.getprice.UseVisualStyleBackColor = false;
-            this.getprice.Click += new System.EventHandler(this.getprice_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("BlindMelon", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label8.Location = new System.Drawing.Point(394, 3);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(552, 102);
-            this.label8.TabIndex = 35;
-            this.label8.Text = "Recreation Center";
             // 
             // pricedataGridView
             // 
@@ -792,6 +744,204 @@ namespace Recreation_Center
             this.pricedataGridView.ReadOnly = true;
             this.pricedataGridView.Size = new System.Drawing.Size(1367, 198);
             this.pricedataGridView.TabIndex = 34;
+            // 
+            // getprice
+            // 
+            this.getprice.BackColor = System.Drawing.Color.Yellow;
+            this.getprice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.getprice.Location = new System.Drawing.Point(1263, 165);
+            this.getprice.Name = "getprice";
+            this.getprice.Size = new System.Drawing.Size(98, 30);
+            this.getprice.TabIndex = 36;
+            this.getprice.Text = "View Price";
+            this.getprice.UseVisualStyleBackColor = false;
+            this.getprice.Click += new System.EventHandler(this.getprice_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("BlindMelon", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label8.Location = new System.Drawing.Point(394, 3);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(552, 102);
+            this.label8.TabIndex = 35;
+            this.label8.Text = "Recreation Center";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.chartbtn);
+            this.tabPage3.Controls.Add(this.totaltxt);
+            this.tabPage3.Controls.Add(this.Totalpricelbl);
+            this.tabPage3.Controls.Add(this.dateTimePicker1);
+            this.tabPage3.Controls.Add(this.VisitordatacheckoutGridView);
+            this.tabPage3.Controls.Add(this.dailyreportchart);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1379, 440);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Daily Reports";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // VisitordatacheckoutGridView
+            // 
+            this.VisitordatacheckoutGridView.AutoGenerateColumns = false;
+            this.VisitordatacheckoutGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.VisitordatacheckoutGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.visitorIDDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn1,
+            this.phoneDataGridViewTextBoxColumn1,
+            this.ageDataGridViewTextBoxColumn1,
+            this.dateDataGridViewTextBoxColumn1,
+            this.dayDataGridViewTextBoxColumn1,
+            this.entryTimeDataGridViewTextBoxColumn1,
+            this.exitTimeDataGridViewTextBoxColumn,
+            this.groupnoDataGridViewTextBoxColumn1,
+            this.priceDataGridViewTextBoxColumn});
+            this.VisitordatacheckoutGridView.DataSource = this.visitorscheckoutBindingSource;
+            this.VisitordatacheckoutGridView.Location = new System.Drawing.Point(457, 82);
+            this.VisitordatacheckoutGridView.Name = "VisitordatacheckoutGridView";
+            this.VisitordatacheckoutGridView.Size = new System.Drawing.Size(919, 306);
+            this.VisitordatacheckoutGridView.TabIndex = 1;
+            // 
+            // dailyreportchart
+            // 
+            chartArea7.Name = "ChartArea1";
+            this.dailyreportchart.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.dailyreportchart.Legends.Add(legend7);
+            this.dailyreportchart.Location = new System.Drawing.Point(13, 26);
+            this.dailyreportchart.Name = "dailyreportchart";
+            series7.ChartArea = "ChartArea1";
+            series7.Legend = "Legend1";
+            series7.Name = "Series1";
+            this.dailyreportchart.Series.Add(series7);
+            this.dailyreportchart.Size = new System.Drawing.Size(427, 386);
+            this.dailyreportchart.TabIndex = 0;
+            this.dailyreportchart.Text = "dailyreportchart";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.dataGridView1);
+            this.tabPage4.Controls.Add(this.weeklyreportchart);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(1379, 440);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Weekly Reports";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            this.dataGridView1.DataSource = this.visitorscheckoutBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(435, 108);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(930, 150);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // weeklyreportchart
+            // 
+            this.weeklyreportchart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
+            this.weeklyreportchart.BorderlineWidth = 10;
+            chartArea8.Name = "ChartArea1";
+            this.weeklyreportchart.ChartAreas.Add(chartArea8);
+            legend8.Name = "Legend1";
+            this.weeklyreportchart.Legends.Add(legend8);
+            this.weeklyreportchart.Location = new System.Drawing.Point(3, 17);
+            this.weeklyreportchart.Name = "weeklyreportchart";
+            series8.ChartArea = "ChartArea1";
+            series8.Legend = "Legend1";
+            series8.Name = "Series1";
+            this.weeklyreportchart.Series.Add(series8);
+            this.weeklyreportchart.Size = new System.Drawing.Size(426, 391);
+            this.weeklyreportchart.TabIndex = 0;
+            this.weeklyreportchart.Text = "chart2";
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(998, 39);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 2;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
+            // 
+            // visitorIDDataGridViewTextBoxColumn
+            // 
+            this.visitorIDDataGridViewTextBoxColumn.DataPropertyName = "VisitorID";
+            this.visitorIDDataGridViewTextBoxColumn.HeaderText = "VisitorID";
+            this.visitorIDDataGridViewTextBoxColumn.Name = "visitorIDDataGridViewTextBoxColumn";
+            this.visitorIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // phoneDataGridViewTextBoxColumn
+            // 
+            this.phoneDataGridViewTextBoxColumn.DataPropertyName = "Phone";
+            this.phoneDataGridViewTextBoxColumn.HeaderText = "Phone";
+            this.phoneDataGridViewTextBoxColumn.Name = "phoneDataGridViewTextBoxColumn";
+            this.phoneDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ageDataGridViewTextBoxColumn
+            // 
+            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            this.ageDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dayDataGridViewTextBoxColumn
+            // 
+            this.dayDataGridViewTextBoxColumn.DataPropertyName = "Day";
+            this.dayDataGridViewTextBoxColumn.HeaderText = "Day";
+            this.dayDataGridViewTextBoxColumn.Name = "dayDataGridViewTextBoxColumn";
+            this.dayDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // entryTimeDataGridViewTextBoxColumn
+            // 
+            this.entryTimeDataGridViewTextBoxColumn.DataPropertyName = "EntryTime";
+            this.entryTimeDataGridViewTextBoxColumn.HeaderText = "EntryTime";
+            this.entryTimeDataGridViewTextBoxColumn.Name = "entryTimeDataGridViewTextBoxColumn";
+            this.entryTimeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // groupnoDataGridViewTextBoxColumn
+            // 
+            this.groupnoDataGridViewTextBoxColumn.DataPropertyName = "Groupno";
+            this.groupnoDataGridViewTextBoxColumn.HeaderText = "Groupno";
+            this.groupnoDataGridViewTextBoxColumn.Name = "groupnoDataGridViewTextBoxColumn";
+            this.groupnoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // visitorsBindingSource2
+            // 
+            this.visitorsBindingSource2.DataSource = typeof(Recreation_Center.Visitors);
             // 
             // child1to2hrDataGridViewTextBoxColumn
             // 
@@ -986,130 +1136,6 @@ namespace Recreation_Center
             // 
             this.priceBindingSource.DataSource = typeof(Recreation_Center.Price);
             // 
-            // tabPage3
-            // 
-            this.tabPage3.Controls.Add(this.VisitordatacheckoutGridView);
-            this.tabPage3.Controls.Add(this.dailyreportchart);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(1379, 440);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Daily Reports";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // VisitordatacheckoutGridView
-            // 
-            this.VisitordatacheckoutGridView.AutoGenerateColumns = false;
-            this.VisitordatacheckoutGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.VisitordatacheckoutGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.visitorIDDataGridViewTextBoxColumn1,
-            this.nameDataGridViewTextBoxColumn1,
-            this.phoneDataGridViewTextBoxColumn1,
-            this.ageDataGridViewTextBoxColumn1,
-            this.dateDataGridViewTextBoxColumn1,
-            this.dayDataGridViewTextBoxColumn1,
-            this.entryTimeDataGridViewTextBoxColumn1,
-            this.exitTimeDataGridViewTextBoxColumn,
-            this.groupnoDataGridViewTextBoxColumn1,
-            this.priceDataGridViewTextBoxColumn});
-            this.VisitordatacheckoutGridView.DataSource = this.visitorscheckoutBindingSource;
-            this.VisitordatacheckoutGridView.Location = new System.Drawing.Point(446, 109);
-            this.VisitordatacheckoutGridView.Name = "VisitordatacheckoutGridView";
-            this.VisitordatacheckoutGridView.Size = new System.Drawing.Size(930, 150);
-            this.VisitordatacheckoutGridView.TabIndex = 1;
-            // 
-            // visitorscheckoutBindingSource
-            // 
-            this.visitorscheckoutBindingSource.DataSource = typeof(Recreation_Center.Visitorscheckout);
-            // 
-            // dailyreportchart
-            // 
-            chartArea4.Name = "ChartArea1";
-            this.dailyreportchart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.dailyreportchart.Legends.Add(legend4);
-            this.dailyreportchart.Location = new System.Drawing.Point(13, 26);
-            this.dailyreportchart.Name = "dailyreportchart";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.dailyreportchart.Series.Add(series4);
-            this.dailyreportchart.Size = new System.Drawing.Size(427, 386);
-            this.dailyreportchart.TabIndex = 0;
-            this.dailyreportchart.Text = "dailyreportchart";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.dataGridView1);
-            this.tabPage4.Controls.Add(this.weeklyreportchart);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1379, 440);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Weekly Reports";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // weeklyreportchart
-            // 
-            this.weeklyreportchart.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid;
-            this.weeklyreportchart.BorderlineWidth = 10;
-            chartArea3.Name = "ChartArea1";
-            this.weeklyreportchart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.weeklyreportchart.Legends.Add(legend3);
-            this.weeklyreportchart.Location = new System.Drawing.Point(3, 17);
-            this.weeklyreportchart.Name = "weeklyreportchart";
-            series3.ChartArea = "ChartArea1";
-            series3.Legend = "Legend1";
-            series3.Name = "Series1";
-            this.weeklyreportchart.Series.Add(series3);
-            this.weeklyreportchart.Size = new System.Drawing.Size(426, 391);
-            this.weeklyreportchart.TabIndex = 0;
-            this.weeklyreportchart.Text = "chart2";
-            // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // visitorsBindingSource1
-            // 
-            this.visitorsBindingSource1.DataSource = typeof(Recreation_Center.Visitors);
-            // 
-            // visitorsBindingSource
-            // 
-            this.visitorsBindingSource.DataSource = typeof(Recreation_Center.Visitors);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(537, 159);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(290, 31);
-            this.label10.TabIndex = 38;
-            this.label10.Text = "Today\'s Price Details";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("MV Boli", 20.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(562, 91);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(362, 34);
-            this.label11.TabIndex = 39;
-            this.label11.Text = "Where Fun Meets Fitness";
-            // 
-            // Visitorslbl
-            // 
-            this.Visitorslbl.AutoSize = true;
-            this.Visitorslbl.Font = new System.Drawing.Font("BlindMelon", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Visitorslbl.Location = new System.Drawing.Point(755, 7);
-            this.Visitorslbl.Name = "Visitorslbl";
-            this.Visitorslbl.Size = new System.Drawing.Size(267, 56);
-            this.Visitorslbl.TabIndex = 47;
-            this.Visitorslbl.Text = "Visitors Detail";
-            // 
             // visitorIDDataGridViewTextBoxColumn1
             // 
             this.visitorIDDataGridViewTextBoxColumn1.DataPropertyName = "VisitorID";
@@ -1176,26 +1202,9 @@ namespace Recreation_Center
             this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
             this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
             // 
-            // dataGridView1
+            // visitorscheckoutBindingSource
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10});
-            this.dataGridView1.DataSource = this.visitorscheckoutBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(435, 108);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(930, 150);
-            this.dataGridView1.TabIndex = 2;
+            this.visitorscheckoutBindingSource.DataSource = typeof(Recreation_Center.Visitorscheckout);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1263,6 +1272,42 @@ namespace Recreation_Center
             this.dataGridViewTextBoxColumn10.HeaderText = "Price";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             // 
+            // visitorsBindingSource1
+            // 
+            this.visitorsBindingSource1.DataSource = typeof(Recreation_Center.Visitors);
+            // 
+            // visitorsBindingSource
+            // 
+            this.visitorsBindingSource.DataSource = typeof(Recreation_Center.Visitors);
+            // 
+            // Totalpricelbl
+            // 
+            this.Totalpricelbl.AutoSize = true;
+            this.Totalpricelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Totalpricelbl.Location = new System.Drawing.Point(1032, 404);
+            this.Totalpricelbl.Name = "Totalpricelbl";
+            this.Totalpricelbl.Size = new System.Drawing.Size(48, 16);
+            this.Totalpricelbl.TabIndex = 3;
+            this.Totalpricelbl.Text = "Total:";
+            // 
+            // totaltxt
+            // 
+            this.totaltxt.Location = new System.Drawing.Point(1098, 404);
+            this.totaltxt.Name = "totaltxt";
+            this.totaltxt.ReadOnly = true;
+            this.totaltxt.Size = new System.Drawing.Size(100, 20);
+            this.totaltxt.TabIndex = 4;
+            // 
+            // chartbtn
+            // 
+            this.chartbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chartbtn.Location = new System.Drawing.Point(1230, 39);
+            this.chartbtn.Name = "chartbtn";
+            this.chartbtn.Size = new System.Drawing.Size(97, 24);
+            this.chartbtn.TabIndex = 5;
+            this.chartbtn.Text = "Show Chart";
+            this.chartbtn.UseVisualStyleBackColor = true;
+            // 
             // Staff
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1280,23 +1325,24 @@ namespace Recreation_Center
             this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.VisitordataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource2)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pricedataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).EndInit();
             this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.VisitordatacheckoutGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.visitorscheckoutBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dailyreportchart)).EndInit();
             this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.weeklyreportchart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.priceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.visitorscheckoutBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.visitorsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1414,6 +1460,10 @@ namespace Recreation_Center
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.TextBox totaltxt;
+        private System.Windows.Forms.Label Totalpricelbl;
+        private System.Windows.Forms.Button chartbtn;
     }
 }
 

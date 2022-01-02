@@ -1301,5 +1301,23 @@ namespace Recreation_Center
             }
         }
 
+        private void Searchbtn_Click(object sender, EventArgs e)
+        {
+            (VisitordataGridView.DataSource as DataTable).DefaultView.RowFilter =
+                String.Format("visitorID like '%" + SearchIDtxt.Text + "%'");
+        }
+
+        void refreshChart()
+        {
+            dailyreportchart.Series.Clear();
+            dailyreportchart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+            dailyreportchart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            dailyreportchart.Padding = new Padding(3, 3, 3, 3);
+            double totalIncomeDouble = 0;
+        }
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
