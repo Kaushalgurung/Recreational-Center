@@ -1344,12 +1344,8 @@ namespace Recreation_Center
             VisitordataGridView.Rows.RemoveAt(rowIndex);
         }
 
-        void refreshChart()
+        void Showreport()
         {
-            dailyreportchart.Series.Clear();
-            dailyreportchart.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
-            dailyreportchart.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
-            dailyreportchart.Padding = new Padding(3, 3, 3, 3);
             int total = 0;
             for (int i = 0; i < VisitordatacheckoutGridView.Rows.Count; ++i)
             {
@@ -1486,10 +1482,11 @@ namespace Recreation_Center
 
 
         }
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-            refreshChart();
-        }
 
+        private void Visitorsummary_Click(object sender, EventArgs e)
+        {
+            Showreport();
+        }
     }
+
 }
