@@ -99,7 +99,7 @@ namespace Recreation_Center
         {
             clear();
         }
-
+        //
         private void pricesavebtn_Click(object sender, EventArgs e)
         {
             string price1 = child1.Text;
@@ -164,6 +164,7 @@ namespace Recreation_Center
                 }
             }
         }
+        //insetring price data to table
         private void InsertValuesToTable()                          // Enters data to Table
         {            
             
@@ -181,7 +182,7 @@ namespace Recreation_Center
                 lf.Show();
             }
         }
-
+        // importing the previously saved price file 
         private void importpricebtn_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Are you sure you want to export pre-saved data??", "Really?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == System.Windows.Forms.DialogResult.Yes)       // If User Confirms then Execute Below
